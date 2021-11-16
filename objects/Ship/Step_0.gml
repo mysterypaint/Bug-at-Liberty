@@ -3,6 +3,7 @@
 if (Game.state == GameStates.PAUSED)
 	exit;
 
+
 //var _player_depth = depth;
 
 // Step the Camera
@@ -10,13 +11,6 @@ with (Camera) {
 	move_x = 0.2;
 	move_y = 0;
 	
-	var _mx = move_x;
-	var _my = move_y;
-	
-	other.hsp = Game.move_x * other.move_speed + _mx;
-	other.vsp = Game.move_y * other.move_speed;
-
-
 	var _num_bullets = instance_number(PlayerBullet);
 	var _cam = id;
 	
@@ -35,6 +29,8 @@ with (Camera) {
 		}
 	}
 	
+	var _mx = move_x;
+	var _my = move_y;
 	
 	with (Textbox) {
 		x += (_mx * Game.dt);
@@ -42,7 +38,11 @@ with (Camera) {
 	}
 }
 
+
 // Step the Player
+
+hsp = Game.move_x * move_speed + _mx;
+vsp = Game.move_y * move_speed + _my;
 
 // Horizontal collision check
 
@@ -59,7 +59,8 @@ if (tile_place_meeting(x + hsp, y, 1) || place_meeting(x + hsp, y, ParentSolid) 
 		x += sign(hsp);
 	}
 	hsp = 0;
-	x = floor(x);
+    if tile_place_meeting(x + hsp+1, y, 1){x=floor(x);}
+    if tile_place_meeting(x + hsp-1, y, 1){x=ceil(x);}
 }
 
 // Don't let player move beyond camera bounds horizontally
@@ -71,9 +72,6 @@ if (x + hsp <= Camera.x) {
 	hsp = 0;
 } else
 	x += hsp * Game.dt;
-
-x = round(x);
-y = round(y);
 
 
 // Vertical collision check
@@ -92,11 +90,10 @@ if (y + vsp <= Camera.y) {
 } else if (y + vsp >= Camera.y + Game.base_res_height - Game.TILE_SIZE - 8) {
 	y = Camera.y + Game.base_res_height - Game.TILE_SIZE - 8;
 	vsp = 0;
+	y = round(y);
 } else
 	y += vsp * Game.dt;
 
-x = round(x);
-y = round(y);
 
 // Implement shooting
 if (bullet_count < 0)
