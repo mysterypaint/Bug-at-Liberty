@@ -177,7 +177,6 @@ if (Game.move_y >= 1) {
 }
 
 with (Camera) {
-	
 	x += (move_x * Game.dt);
 	y += (move_y * Game.dt);
 	camera_set_view_pos(view_camera[0], x, y);

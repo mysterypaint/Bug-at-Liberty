@@ -30,6 +30,8 @@ if (ds_exists(instances, ds_type_list)) {
 	var _num_instances = ds_list_size(instances);
 	for (var _i = 0; _i < _num_instances; _i++) {
 		var _this_instance = instances[| _i];
+		if (is_undefined(_this_instance))
+			continue;
 		if (instance_exists(_this_instance))
 			instance_destroy(_this_instance);
 	}

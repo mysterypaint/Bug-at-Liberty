@@ -1,5 +1,5 @@
 /// @description Insert description here
-draw_sprite(sprite_index, img_index_offset + img_index, x, y);
+draw_sprite(sprite_index, img_index_offset + img_index, x + 7, y + 6);
 
 img_index = (img_index + (img_speed * Game.dt)) % img_ani_frames_max;
 

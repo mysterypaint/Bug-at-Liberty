@@ -2,6 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation, _width, _height){
 	var _obj_id = noone;
+	exit;
 	
 	switch(_name) {
 		case "EnemySpider":

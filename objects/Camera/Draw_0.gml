@@ -21,7 +21,6 @@ switch(Game.state) {
 		break;
 	case GameStates.PAUSED:
 	case GameStates.GAMEPLAY:
-	
 		var i = 0;
 		
 		
@@ -45,33 +44,14 @@ switch(Game.state) {
 		
 		draw_set_color(c_white);
 		
-		
 		// Draw entities
-		
-		/*
-		with (Wall) {
-			draw_self();
-		}*/
 
-		// Draw all of the Draw objects in order, by their depth
-		var _dgrid = ds_draw_object_depth_sort;
-		var _num_draw_objects = instance_number(ParentDraw);
-		
-		ds_grid_resize(_dgrid, 2, _num_draw_objects);
-		
-		var _yy = 0; with (ParentDraw) {
-			_dgrid[# 0, _yy] = id;
-			_dgrid[# 1, _yy] = depth;
-			_yy++;
-		}
-		
-		ds_grid_sort(_dgrid, 1, true);
-		
+		// Draw all of the Draw objects in order, by their depth		
 		var _inst;
 		
-		_yy = 0; repeat (_num_draw_objects) {
+		var _yy = 0; repeat (num_draw_objects) {
 			// pull out an ID
-			_inst = _dgrid[# 0, _yy];
+			_inst = ds_draw_object_depth_sort[# 0, _yy];
 			// get instance to draw itself
 			with (_inst) {
 				event_perform(ev_draw, 0);
@@ -108,13 +88,22 @@ switch(Game.state) {
 		var _lives = Game.player_lives - 1;
 		
 		for (var _i = 0; _i < _lives; _i++) {
-			draw_sprite(sprLife, 0, x + (_i * weapon_box_width) + lives_hud_xoff, y + lives_hud_yoff);
+			draw_sprite(sprHUDLife, 0, x + (_i * weapon_box_width) + lives_hud_xoff, y + lives_hud_yoff);
 		}
 		
 		//draw_text(x, y, "Bullet Type: " + get_bullet_type_name());
 		
+		with (EnemyBulletParent) {
+			event_perform(ev_draw, 0);
+		}
+		
 		
 		draw_set_alpha(1);
+		
+		//var _tx = floor(Ship.x / Game.TILE_SIZE);
+		//var _ty = floor(Ship.y / Game.TILE_SIZE);
+		//draw_text(Camera.x, Camera.y, string(_tx) + ", " + string(_ty));
+		
 		if (Game.state == GameStates.PAUSED) {
 			
 			if (Game.tick % Game.GAME_PAUSED_TEXT_BLINK_SPEED == 0)

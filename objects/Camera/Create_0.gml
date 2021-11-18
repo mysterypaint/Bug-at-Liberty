@@ -12,3 +12,5 @@ lives_hud_yoff = 19;
 hud_alpha = 0.7;
 
 level_data_obj = noone;
+
+num_draw_objects = 0;

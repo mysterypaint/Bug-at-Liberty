@@ -93,6 +93,8 @@ function read_json(_fName){
 				}
 			}
 			
+			buffer_delete(_layer_data_buffer);
+			
 			if (_name != "Collision")
 				ds_list_add(_this_layer, _layer_grid);
 		} else {

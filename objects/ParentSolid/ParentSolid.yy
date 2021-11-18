@@ -4,7 +4,10 @@
   "visible": false,
   "spriteMaskId": null,
   "persistent": false,
-  "parentObjectId": null,
+  "parentObjectId": {
+    "name": "ParentDraw",
+    "path": "objects/ParentDraw/ParentDraw.yy",
+  },
   "physicsObject": false,
   "physicsSensor": false,
   "physicsShape": 1,
