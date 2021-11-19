@@ -191,6 +191,17 @@
  "nextlayerid":11,
  "nextobjectid":15,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"cam_move_x",
+         "type":"float",
+         "value":0
+        }, 
+        {
+         "name":"cam_move_y",
+         "type":"float",
+         "value":0
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.7.2",
  "tileheight":16,

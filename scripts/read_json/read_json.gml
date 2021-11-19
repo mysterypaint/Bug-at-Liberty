@@ -25,6 +25,26 @@ function read_json(_fName){
 	_lvl_obj.collision_layer = layer_create(10000, "Collision");
 	_lvl_obj.collision_layer_tiles = layer_tilemap_create(_lvl_obj.collision_layer, 0, 0, tilesheet1, _lvl_obj.map_width, _lvl_obj.map_height);
 	
+	// Get and set custom map properties, if applicable
+	var _cproperties = ds_map_find_value(_result_map, "properties");
+	if (!is_undefined(_cproperties)) {
+		var _num_props = ds_list_size(_cproperties);
+		for (var _i = 0; _i < _num_props; _i++) {
+			var _this_prop = _cproperties[| _i];
+			var _name = _this_prop[? "name"];
+			var _value = _this_prop[? "value"];
+		
+			switch(_name) {
+				case "cam_move_x":
+					Camera.move_x = _value; // 0.2 by default
+					break;
+				case "cam_move_y":
+					Camera.move_y = _value; // 0.0 by default
+					break;
+			}
+		}
+	}
+	
 	// Set the background color based on the Tiled data
 	var _cstr = ds_map_find_value(_result_map, "backgroundcolor");
 	var _bg_color = c_black;
