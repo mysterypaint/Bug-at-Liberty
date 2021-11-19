@@ -103,6 +103,8 @@ switch(Game.state) {
 		//var _tx = floor(Ship.x / Game.TILE_SIZE);
 		//var _ty = floor(Ship.y / Game.TILE_SIZE);
 		//draw_text(Camera.x, Camera.y, string(_tx) + ", " + string(_ty));
+		if (Game.debug)
+			draw_text(x,y,"fps: " + string(fps));
 		
 		if (Game.state == GameStates.PAUSED) {
 			
