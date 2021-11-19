@@ -1,4 +1,6 @@
 /// @description Insert description here
+event_inherited();
+
 enum BulletTypes {
 	LADYBUG,
 	DRAGONFLY,

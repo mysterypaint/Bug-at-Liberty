@@ -103,11 +103,16 @@ function read_json(_fName){
 			var _instance_spawn_list = ds_map_find_value(_layer_list[| _i], "objects");
 			
 			var _spawn_list_size = ds_list_size(_instance_spawn_list);
+			_lvl_obj.spawn_list = ds_list_create();
+			//ds_list_copy(_lvl_obj.spawn_list, _instance_spawn_list);
 			
 			for (var _j = 0; _j < _spawn_list_size; _j++) {
-				var _inst_spawn_data_copy = ds_map_create();
-				
 				var _inst_spawn_data = _instance_spawn_list[| _j];
+				
+				var _cloned_copy = ds_map_create();
+				ds_map_copy(_cloned_copy, _inst_spawn_data);
+				ds_list_add(_lvl_obj.spawn_list, _cloned_copy);
+				
 				var _id = _inst_spawn_data[? "id"];
 				var _name = _inst_spawn_data[? "name"];
 				var _x = _inst_spawn_data[? "x"];

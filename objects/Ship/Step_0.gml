@@ -3,13 +3,49 @@
 if (Game.state == GameStates.PAUSED)
 	exit;
 
+if (dead) {
+	x += Camera.prev_move_x * Game.dt;
+	y += Camera.prev_move_y * Game.dt;
+	
+	if (death_timer > 0)
+		death_timer--;
+	else if (death_timer == 0) {
+		death_timer = -1;
+		
+		var _vfx = instance_create_depth(0, 0, 0, FadeEffect);
+		_vfx.transition_type = TransitionTypes.LEVEL_RESET;
+		_vfx.parent_id = id;
+	}
+	
+	if (!instance_exists(FadeEffect)) {
+		with (Camera) {
+			x += (move_x * Game.dt);
+			y += (move_y * Game.dt);
+			camera_set_view_pos(view_camera[0], x, y);
+		
+			var _mx = move_x;
+			var _my = move_y;
+	
+			with (Textbox) {
+				x += (_mx * Game.dt);
+				y += (_my * Game.dt);
+			}
+		}
+	}
+	exit;
+}
 
 //var _player_depth = depth;
 
+if (init_player > 0) {
+	if (!instance_exists(FadeEffect))
+		init_player -= Game.dt;
+	exit;
+}
+
+
 // Step the Camera
 with (Camera) {
-	move_x = 0.2;
-	move_y = 0;
 	
 	var _num_bullets = instance_number(PlayerBullet);
 	var _cam = id;
@@ -51,15 +87,20 @@ var _layer_count = ds_list_size(LevelData.layers);
 LevelData.layers[| _layer_count - 2][| 1][# _x div _ts, _y div _ts])
 */
 
-if (tile_place_meeting(x + hsp, y, 1) || place_meeting(x + hsp, y, ParentSolid) || place_meeting(x + hsp, y, Camera.x) || place_meeting(x + hsp, y, Camera.x + Game.base_res_width)) {
+if (tile_place_meeting(x + hsp, y, 1) || place_meeting(x + hsp, y, ParentSolid) || place_meeting(x + hsp, y, ParentEnemy)) {
+	kill_player();
+}
+
+if (place_meeting(x + hsp, y, Camera.x) || place_meeting(x + hsp, y, Camera.x + Game.base_res_width)) {
 	while(!tile_place_meeting(x + sign(hsp), y, 1) &&
 			!place_meeting(x + sign(hsp), y, ParentSolid) &&
 			!place_meeting(x + sign(hsp), y, Camera.x) &&
 			!place_meeting(x + sign(hsp), y, Camera.x + Game.base_res_width)){
 		x += sign(hsp);
 	}
+	
 	hsp = 0;
-    if tile_place_meeting(x + hsp+1, y, 1){x=floor(x);}
+	if tile_place_meeting(x + hsp+1, y, 1){x=floor(x);}
     if tile_place_meeting(x + hsp-1, y, 1){x=ceil(x);}
 }
 
@@ -75,11 +116,13 @@ if (x + hsp <= Camera.x) {
 
 
 // Vertical collision check
-if (tile_place_meeting(x, y + vsp, 1) || place_meeting(x, y + vsp, ParentSolid)) {
+if (tile_place_meeting(x, y + vsp, 1) || place_meeting(x, y + vsp, ParentSolid) || place_meeting(x, y + vsp, ParentEnemy)) {
+	kill_player();
+	/*
 	while(!tile_place_meeting(x, y + sign(vsp), 1) && !place_meeting(x, y + sign(vsp), ParentSolid)){
 		y += sign(vsp);
-	}
-	vsp = 0;
+	}*/
+	//vsp = 0;
 }
 
 
@@ -176,8 +219,10 @@ if (Game.move_y >= 1) {
 	img_index_offset = ShipAnimations.NEUTRAL * img_ani_frames_max;
 }
 
-with (Camera) {
-	x += (move_x * Game.dt);
-	y += (move_y * Game.dt);
-	camera_set_view_pos(view_camera[0], x, y);
+if (!dead) {
+	with (Camera) {
+		x += (move_x * Game.dt);
+		y += (move_y * Game.dt);
+		camera_set_view_pos(view_camera[0], x, y);
+	}
 }

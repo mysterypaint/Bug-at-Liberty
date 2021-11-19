@@ -1,5 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
+event_inherited();
+
 shoot_timer_max_val = 200;
 shoot_timer_next = irandom(shoot_timer_max_val);
 shoot_timer = shoot_timer_next;

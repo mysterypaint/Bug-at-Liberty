@@ -7,6 +7,7 @@ enum GameStates {
 	TITLE,
 	GAMEPLAY,
 	PAUSED,
+	GAMEOVER,
 	CREDITS
 };
 

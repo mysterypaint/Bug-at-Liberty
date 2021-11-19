@@ -1,8 +1,16 @@
 /// @description 
+event_inherited();
+
 hsp = 0;
 vsp = 0;
 
 move_speed = 2;
+
+dead = false;
+death_timer = -1;
+death_timer_reset = 370;
+init_player_reset = 10; // Frames it takes for the player to regain control when they spawn
+init_player = init_player_reset;
 
 enum Fighters {
 	LADYBUG,

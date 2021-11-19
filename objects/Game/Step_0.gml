@@ -5,7 +5,7 @@ switch(state) {
 		break;
 	case GameStates.TITLE:
 		if (key_pause_pressed) {
-			playerShip = instance_create_depth(0, 0, 0, Ship);
+			playerShip = instance_create_depth(120, 64, 0, Ship);
 			//room_goto(rm_lv1);
 			level_data_obj = read_json("testmap0.json");
 			
@@ -14,11 +14,17 @@ switch(state) {
 		}
 		break;
 	case GameStates.GAMEPLAY:
+		if (Game.player_lives <= 0) {
+			state = GameStates.GAMEOVER;
+		}
+	
 		if (key_pause_pressed && pause_timer <= 0) {
-			dt = 0;
-			prev_state = GameStates.GAMEPLAY;
-			state = GameStates.PAUSED;
-			pause_timer = pause_timer_reset;
+			if (!playerShip.dead) { // Allow pausing, but only if the player isn't dead
+				dt = 0;
+				prev_state = GameStates.GAMEPLAY;
+				state = GameStates.PAUSED;
+				pause_timer = pause_timer_reset;
+			}
 		}
 		
 		if (keyboard_check_pressed(ord("T"))) {
@@ -35,7 +41,18 @@ switch(state) {
 			
 			pause_timer = pause_timer_reset;
 		}
-		break;	
+		break;
+	case GameStates.GAMEOVER:
+		with (Camera) {
+			move_x = 0;
+			move_y = 0;
+			x = 0;
+			y = 0;
+			camera_set_view_pos(view_camera[0], x, y);
+		}
+		
+		if (key_pause_pressed)
+			game_restart();
 }
 
 // Toggle fullscreen with F4/Alt+Enter

@@ -1,15 +1,18 @@
 {
   "spriteId": {
-    "name": "sprWall",
-    "path": "sprites/sprWall/sprWall.yy",
+    "name": "sprCockroachIdle",
+    "path": "sprites/sprCockroachIdle/sprCockroachIdle.yy",
   },
   "solid": false,
   "visible": false,
-  "spriteMaskId": null,
+  "spriteMaskId": {
+    "name": "sprCockroachIdle",
+    "path": "sprites/sprCockroachIdle/sprCockroachIdle.yy",
+  },
   "persistent": false,
   "parentObjectId": {
-    "name": "ParentDraw",
-    "path": "objects/ParentDraw/ParentDraw.yy",
+    "name": "ParentEnemy",
+    "path": "objects/ParentEnemy/ParentEnemy.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

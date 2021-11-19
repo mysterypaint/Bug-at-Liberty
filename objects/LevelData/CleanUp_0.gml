@@ -39,6 +39,16 @@ if (ds_exists(instances, ds_type_list)) {
 	ds_list_destroy(instances);
 }
 
+if (ds_exists(spawn_list, ds_type_list)) {
+	var _num_instances = ds_list_size(spawn_list);
+	for (var _i = 0; _i < _num_instances; _i++) {
+		var _this_spawn_data = spawn_list[| _i];
+		ds_map_destroy(_this_spawn_data);
+	}
+	
+	ds_list_destroy(spawn_list);
+}
+
 if (ds_exists(tilesets, ds_type_list)) {
 	var _num_instances = ds_list_size(tilesets);
 	/*

@@ -14,3 +14,11 @@ hud_alpha = 0.7;
 level_data_obj = noone;
 
 num_draw_objects = 0;
+
+// Default scrolling speed
+move_x = 0.2;
+move_y = 0;
+prev_move_x = 0;
+prev_move_y = 0;
+
+hide_camera = false;

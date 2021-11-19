@@ -1,4 +1,6 @@
 /// @description Insert description here
+event_inherited();
+
 if (!instance_exists(Ship))
 	exit;
 
