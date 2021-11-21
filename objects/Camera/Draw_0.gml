@@ -103,7 +103,7 @@ switch(Game.state) {
 				draw_sprite(sprHUDWeaponCursor, _i, x + (_i * weapon_box_width) + weapon_hud_xoff + 1, y + weapon_hud_yoff + 1);
 		}
 		
-		draw_text(x + 131, y + 7, "Score: 0");//69696969nicenincieninciencinei");
+		//draw_text(x + 131, y + 7, "Score: 0");
 		
 		// Num Lives
 		
@@ -134,6 +134,18 @@ switch(Game.state) {
 			if (Game.show_pause_text) {
 				draw_text(Camera.x + 15 * _hts, Camera.y + 10 * _hts, "- Game Paused -");
 			}
+		}
+		
+		if (checkpoint_display_timer > 0) {
+			if (checkpoint_display_timer % checkpoint_display_blink_rate == 0)
+				checkpoint_display_visible = !checkpoint_display_visible;
+			
+			if (checkpoint_display_visible) {
+				draw_set_color(c_yellow);
+				draw_text(x + (8*24), y + (8*21), "Checkpoint reached!");
+				draw_set_color(c_white);
+			}
+			checkpoint_display_timer -= Game.dt;
 		}
 		
 		if (instance_exists(FadeEffect)) {

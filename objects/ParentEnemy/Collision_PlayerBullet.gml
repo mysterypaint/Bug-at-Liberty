@@ -1,4 +1,6 @@
 /// @description Insert description here
-hp--;
+if (hp > -2)
+	hp--;
+
 with (other)
 	instance_destroy();

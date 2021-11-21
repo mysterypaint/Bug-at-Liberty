@@ -4,6 +4,9 @@ function kill_player() {
 	if (!dead && !Game.debug) {
 		dead = true;
 		death_timer = death_timer_reset;
+		
+		//audio_stop_sound(Game.curr_bgm);
+		
 		instance_create_depth(x + 8, y + 13, depth + 1, PlayerExplosion);
 	
 		with (Camera) {

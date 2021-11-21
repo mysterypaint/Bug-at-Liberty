@@ -24,6 +24,7 @@ zoom_size = 4;
 zoom_size_max = floor(display_get_width() / base_res_width);
 
 player_lives = 3;
+checkpoint = 0; // x-pos determining where to move the camera and player upon a player death
 
 key_up = vk_up;
 key_up_alt = ord("W");
@@ -67,10 +68,11 @@ spr_font = font_add_sprite(sprFont, ord("!"), true, 1);
 
 TILE_SIZE = 16;
 
-player_score = 0;
+//player_score = 0;
 
 dt = 1; // Delta Time
 
+curr_bgm = -1;
 
 // Textbox stuff
 enum Portraits {

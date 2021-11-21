@@ -87,8 +87,15 @@ var _layer_count = ds_list_size(LevelData.layers);
 LevelData.layers[| _layer_count - 2][| 1][# _x div _ts, _y div _ts])
 */
 
-if (tile_place_meeting(x + hsp, y, 1) || place_meeting(x + hsp, y, ParentSolid) || place_meeting(x + hsp, y, ParentEnemy)) {
-	kill_player();
+var _enemy_id = instance_place(x + hsp, y, ParentEnemy);
+
+if (tile_place_meeting(x + hsp, y, 1) || place_meeting(x + hsp, y, ParentSolid) || _enemy_id != noone) {
+	if (_enemy_id != noone) {
+		if (_enemy_id.state != EnemyStates.UNLOADED) {
+			kill_player(); // Only kill the player if we collided with the enemy while it's not unloaded
+		}
+	} else
+		kill_player();
 }
 
 if (place_meeting(x + hsp, y, Camera.x) || place_meeting(x + hsp, y, Camera.x + Game.base_res_width)) {
@@ -114,10 +121,14 @@ if (x + hsp <= Camera.x) {
 } else
 	x += hsp * Game.dt;
 
-
+_enemy_id = instance_place(x, y + vsp, ParentEnemy);
 // Vertical collision check
-if (tile_place_meeting(x, y + vsp, 1) || place_meeting(x, y + vsp, ParentSolid) || place_meeting(x, y + vsp, ParentEnemy)) {
-	kill_player();
+if (tile_place_meeting(x, y + vsp, 1) || place_meeting(x, y + vsp, ParentSolid) || _enemy_id != noone) {
+	if (_enemy_id != noone) {
+		if (_enemy_id.state != EnemyStates.UNLOADED)
+			kill_player(); // Only kill the player if we collided with the enemy while it's not unloaded
+	} else
+		kill_player();
 	/*
 	while(!tile_place_meeting(x, y + sign(vsp), 1) && !place_meeting(x, y + sign(vsp), ParentSolid)){
 		y += sign(vsp);

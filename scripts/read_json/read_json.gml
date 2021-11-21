@@ -131,6 +131,21 @@ function read_json(_fName){
 				
 				var _cloned_copy = ds_map_create();
 				ds_map_copy(_cloned_copy, _inst_spawn_data);
+				
+				var _spawn_properties = _inst_spawn_data[? "properties"];
+				if (!is_undefined(_spawn_properties)) {
+					var _properties_list = ds_list_create();
+					
+					var _num_properties = ds_list_size(_spawn_properties);
+					
+					for (var _k = 0; _k < _num_properties; _k++) {
+						var _prop_data = ds_map_create();
+						ds_map_copy(_prop_data, _spawn_properties[| _k]);
+						ds_list_add(_properties_list, _prop_data);
+					}
+					_cloned_copy[? "properties"] = _properties_list;
+				}
+				
 				ds_list_add(_lvl_obj.spawn_list, _cloned_copy);
 				
 				var _id = _inst_spawn_data[? "id"];
@@ -142,8 +157,10 @@ function read_json(_fName){
 				var _rotation = _inst_spawn_data[? "rotation"];
 				var _width = _inst_spawn_data[? "width"];
 				var _height = _inst_spawn_data[? "height"];
+				var _properties = _inst_spawn_data[? "properties"];
 				
-				var _new_entity = level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation, _width, _height); // returns the new object's ID
+				var _new_entity = level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation, _width, _height, _properties); // returns the new object's ID
+				
 				ds_list_add(_lvl_obj.instances, _new_entity);
 			}
 			

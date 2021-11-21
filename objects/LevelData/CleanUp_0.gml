@@ -43,6 +43,16 @@ if (ds_exists(spawn_list, ds_type_list)) {
 	var _num_instances = ds_list_size(spawn_list);
 	for (var _i = 0; _i < _num_instances; _i++) {
 		var _this_spawn_data = spawn_list[| _i];
+		
+		var _properties = _this_spawn_data[? "properties"];
+		if (!is_undefined(_properties)) {
+			var _num_props = ds_list_size(_properties);
+			for (var _j = 0; _j < _num_props; _j++) {
+				var _this_prop_map = _properties[| _j];
+				ds_map_destroy(_this_prop_map);
+			}
+		}
+		
 		ds_map_destroy(_this_spawn_data);
 	}
 	

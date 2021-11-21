@@ -181,6 +181,39 @@
                  "width":16,
                  "x":192,
                  "y":48
+                }, 
+                {
+                 "height":16,
+                 "id":15,
+                 "name":"EnemyHandSingleHorizontal",
+                 "properties":[
+                        {
+                         "name":"is_foot",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"wait_timer",
+                         "type":"int",
+                         "value":200
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":416,
+                 "y":32
+                }, 
+                {
+                 "height":16,
+                 "id":16,
+                 "name":"Checkpoint",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":448,
+                 "y":0
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -189,13 +222,13 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":15,
+ "nextobjectid":17,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"cam_move_x",
          "type":"float",
-         "value":0
+         "value":0.2
         }, 
         {
          "name":"cam_move_y",

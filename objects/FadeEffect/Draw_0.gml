@@ -6,34 +6,34 @@ if (a == 1) {
 		case TransitionTypes.LEVEL_RESET: // Reset the level; subtract a life from the player
 			with (parent_id) {
 				// Reset the room
-				if (instance_exists(PilotBug))
-					instance_destroy(PilotBug);
-		
-				if (instance_exists(Textbox))
-					instance_destroy(Textbox);
-			
-				//if (instance_exists(LevelData))
-					//instance_destroy(LevelData);
-		
-				//read_json("testmap0.json");
-				
 				Game.player_lives--;
 				dead = false;
 				draw_me = true;
 				init_player = init_player_reset;
 				
-				respawn_room_entities();
-				
-				x = 120;
-				y = 64;
+				if (Game.player_lives >= 0) {
+					respawn_room_entities();
+					//audio_play_sound(Game.curr_bgm, 0, true);
+					Camera.checkpoint_display_timer = 0;
+					x = Game.checkpoint + 120;
+					y = 32;
+				}
 				
 			}
 			
+			
 			with (Camera) {
-				x = 0;
-				y = 0;
-				move_x = prev_move_x;
-				move_y = prev_move_y;
+				if (Game.player_lives >= 0) {
+					x = Game.checkpoint;
+					y = 0;
+					move_x = prev_move_x;
+					move_y = prev_move_y;
+				} else {
+					x = 0;
+					y = 0;
+					move_x = 0;
+					move_y = 0;
+				}
 				camera_set_view_pos(view_camera[0], Camera.x, Camera.y);
 			}
 			break;

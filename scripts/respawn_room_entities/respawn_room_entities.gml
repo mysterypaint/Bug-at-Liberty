@@ -5,6 +5,17 @@ function respawn_room_entities(){
 	
 	// First, delete all the existing entities within the room
 	
+	if (instance_exists(PilotBug))
+		instance_destroy(PilotBug);
+	if (instance_exists(Textbox))
+		instance_destroy(Textbox);
+	if (instance_exists(ParentEnemyBullet))
+		instance_destroy(ParentEnemyBullet);
+	if (instance_exists(EnemyExplosion))
+		instance_destroy(EnemyExplosion);
+	if (instance_exists(PlayerExplosion))
+		instance_destroy(PlayerExplosion);
+
 	if (ds_exists(_lvl_obj.instances, ds_type_list)) {
 		var _num_instances = ds_list_size(_lvl_obj.instances);
 		for (var _i = 0; _i < _num_instances; _i++) {
@@ -17,6 +28,9 @@ function respawn_room_entities(){
 	
 		ds_list_destroy(_lvl_obj.instances);
 	}
+
+	if (instance_exists(ParentEnemy))
+		instance_destroy(ParentEnemy);
 
 	// Now that all the entities have been destroyed, spawn some fresh ones into the room
 
@@ -37,8 +51,9 @@ function respawn_room_entities(){
 		var _rotation = _inst_spawn_data[? "rotation"];
 		var _width = _inst_spawn_data[? "width"];
 		var _height = _inst_spawn_data[? "height"];
+		var _properties = _inst_spawn_data[? "properties"];
 				
-		var _new_entity = level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation, _width, _height); // returns the new object's ID
+		var _new_entity = level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation, _width, _height, _properties); // returns the new object's ID
 		ds_list_add(_lvl_obj.instances, _new_entity);
 	}
 }

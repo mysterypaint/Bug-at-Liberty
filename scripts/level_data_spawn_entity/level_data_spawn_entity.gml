@@ -1,11 +1,107 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation, _width, _height){
+function level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation, _width, _height, _properties) {
+	
+	if (_x < Game.checkpoint)
+		return noone; // Do not spawn this entity if the camera already passed it.
+	
 	var _obj_id = noone;
 	
 	switch(_name) {
+		case "Checkpoint":
+			_obj_id = instance_create_depth(_x, _y, 0, Checkpoint);
+			break;
+		case "EnemyHandSingleVertical":
+			_obj_id = instance_create_depth(_x, _y, 0, EnemyHandSingleVertical);
+			
+			with (_obj_id) {
+				moving_up = choose(false, true);
+			
+				if (!is_undefined(_properties)) {
+					var _num_props = ds_list_size(_properties);
+					for (var _i = 0; _i < _num_props; _i++) {
+						var _this_property = _properties[| _i];
+						var _prop_name = _this_property[? "name"];
+						var _prop_type = _this_property[? "type"];
+						var _prop_value = _this_property[? "value"];
+					
+						switch(_prop_name) {
+							case "wait_timer":
+								wait_timer = _prop_value;
+								break;
+							case "is_foot":
+								if (_prop_value == true) {
+									foot_variation = choose(1, 2);
+									
+									if (foot_variation == 1) {
+										sprite_index = sprFeetVertical1;
+									} else {
+										sprite_index = sprFeetVertical2;
+									}
+									spr_index = sprite_index;
+									body_extension.sprite_index = sprLegHorizontal1;
+									hand_height = 8;
+									arm_height = 320 - hand_height;
+									x_offset = 0;//-hand_width;
+									body_extension.spr_index = body_extension.sprite_index;
+									body_extension.mask_index = body_extension.spr_index;
+								}
+								break;
+						}
+					}
+				}
+			
+				if (moving_left) {
+					img_xscale = -1;
+					body_extension.img_xscale = -1;
+				}
+			}
+			break;
+		case "EnemyHandSingleHorizontal":
+			_obj_id = instance_create_depth(_x, _y, 0, EnemyHandSingleHorizontal);
+			
+			with (_obj_id) {
+				moving_left = choose(false, true);
+			
+				if (!is_undefined(_properties)) {
+					var _num_props = ds_list_size(_properties);
+					for (var _i = 0; _i < _num_props; _i++) {
+						var _this_property = _properties[| _i];
+						var _prop_name = _this_property[? "name"];
+						var _prop_type = _this_property[? "type"];
+						var _prop_value = _this_property[? "value"];
+					
+						switch(_prop_name) {
+							case "wait_timer":
+								wait_timer = _prop_value;
+								break;
+							case "is_foot":
+								if (_prop_value == true) {
+									sprite_index = sprFeetHorizontal1;
+									spr_index = sprite_index;
+									body_extension.sprite_index = sprLegHorizontal1;
+									hand_width = 8;
+									arm_width = 320 - hand_width;
+									x_offset = 0;//-hand_width;
+									body_extension.spr_index = body_extension.sprite_index;
+									body_extension.mask_index = body_extension.spr_index;
+								}
+								break;
+						}
+					}
+				}
+			
+				if (moving_left) {
+					img_xscale = -1;
+					body_extension.img_xscale = -1;
+				}
+			}
+			break;
 		case "EnemySpiderLarge":
-			_obj_id = instance_create_depth(_x, _y, 0, EnemySpider);
+			_obj_id = instance_create_depth(_x, _y, 0, EnemySpiderLarge);
+			break;
+		case "EnemySpiderSmall":
+			_obj_id = instance_create_depth(_x, _y, 0, EnemySpiderSmall);
 			break;
 		case "EnemyCockroach":
 			_obj_id = instance_create_depth(_x, _y, 0, EnemyCockroach);

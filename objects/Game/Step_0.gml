@@ -2,20 +2,29 @@
 switch(state) {
 	case GameStates.INIT:
 		state = GameStates.TITLE;
+		audio_group_set_gain(audiogroup1, 1, 1); // SFX
+		audio_group_set_gain(audiogroup2, 0.8, 1); // BGM
+		audio_group_load(audiogroup1);
+		audio_group_load(audiogroup2);
 		break;
 	case GameStates.TITLE:
 		if (key_pause_pressed) {
-			playerShip = instance_create_depth(120, 64, 0, Ship);
+			playerShip = instance_create_depth(120, 32, 0, Ship);
 			//room_goto(rm_lv1);
 			level_data_obj = read_json("testmap0.json");
 			
 			state = GameStates.GAMEPLAY;
 			pause_timer = pause_timer_reset;
+			
+			curr_bgm = musMainLevel;
+			audio_play_sound(curr_bgm, 0, true);
 		}
 		break;
 	case GameStates.GAMEPLAY:
 		if (Game.player_lives <= 0) {
 			state = GameStates.GAMEOVER;
+			audio_stop_sound(curr_bgm);
+			break;
 		}
 	
 		if (key_pause_pressed && pause_timer <= 0) {
@@ -24,6 +33,8 @@ switch(state) {
 				prev_state = GameStates.GAMEPLAY;
 				state = GameStates.PAUSED;
 				pause_timer = pause_timer_reset;
+				
+				audio_pause_sound(curr_bgm);
 			}
 		}
 		
@@ -31,15 +42,16 @@ switch(state) {
 			if (!instance_exists(Textbox))
 				var _tbox = create_textbox(0);
 		}
-		player_score += (1 * dt);
+		//player_score += (1 * dt);
 		break;
 	case GameStates.PAUSED:
 		if (key_pause_pressed && pause_timer <= 0) {
 			dt = 1;
 			state = prev_state;
 			prev_state = GameStates.PAUSED;
-			
 			pause_timer = pause_timer_reset;
+			
+			audio_resume_sound(curr_bgm);
 		}
 		break;
 	case GameStates.GAMEOVER:

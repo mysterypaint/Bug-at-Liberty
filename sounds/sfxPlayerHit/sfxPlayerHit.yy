@@ -7,8 +7,8 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "audiogroup_default",
-    "path": "audiogroups/audiogroup_default",
+    "name": "audiogroup1",
+    "path": "audiogroups/audiogroup1",
   },
   "soundFile": "sfxPlayerHit.wav",
   "duration": 0.34,

@@ -15,6 +15,11 @@ level_data_obj = noone;
 
 num_draw_objects = 0;
 
+checkpoint_display_timer_reset = 400;
+checkpoint_display_timer = 0;
+checkpoint_display_blink_rate = 100;
+checkpoint_display_visible = false;
+
 // Default scrolling speed
 move_x = 0.2;
 move_y = 0;
