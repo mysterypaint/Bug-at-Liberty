@@ -88,6 +88,17 @@ function read_json(_fName){
 			
 		if (_this_layer_type != "objectgroup") {
 			var _name = ds_map_find_value(_layer_list[| _i], "name");
+			
+			if (_lvl_obj.shadow_layer <= -1) {
+				var _fg_check = string_split(_name, " ");
+				var _num_elements = array_length_1d(_fg_check) - 1;
+				var _checking_str = string_copy(_fg_check[_num_elements], 1, 2);
+				
+				// Find the first layer with "FG" in the name. This layer is where we should place the shadow layer
+				if (_checking_str == "FG")
+					_lvl_obj.shadow_layer = _i;
+			}
+			
 			var _this_layer_data = ds_map_find_value(_layer_list[| _i], "data");
 			
 			ds_list_add(_this_layer, _name);

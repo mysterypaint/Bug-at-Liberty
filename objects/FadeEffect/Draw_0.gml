@@ -17,6 +17,22 @@ if (a == 1) {
 					Camera.checkpoint_display_timer = 0;
 					x = Game.checkpoint + 120;
 					y = 32;
+					
+					// Reset all player's previous position arrays back to the player's (x, y)
+					for (var _i = 29; _i >= 0; _i--) {
+						player_ghost_x[_i] = x;
+						player_ghost_y[_i] = y;
+					}
+					
+					// Remove all of the player's helpers
+					
+					for (var _i = 2; _i >= 0; _i--) {
+						var _this_helper = helpers[_i];
+						_this_helper.activated = false;
+						_this_helper.draw_me = false;
+					}
+					
+					helpers_activated = -1;
 				}
 				
 			}

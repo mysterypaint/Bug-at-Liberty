@@ -2,6 +2,11 @@
 // Inherit the parent event
 event_inherited();
 
+cam_bounds_x_min = Game.TILE_SIZE * 50;
+cam_bounds_y_min = Game.TILE_SIZE * 50;
+cam_bounds_x_max = Game.base_res_width + Game.TILE_SIZE * 50;
+cam_bounds_y_max = Game.base_res_height + Game.TILE_SIZE * 50;
+
 sprite_index = choose(sprHandVertical1, sprHandVertical2);
 spr_index = sprite_index;
 

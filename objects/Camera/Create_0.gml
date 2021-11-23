@@ -27,3 +27,5 @@ prev_move_x = 0;
 prev_move_y = 0;
 
 hide_camera = false;
+
+shadow_layer_alpha = 0.3922;

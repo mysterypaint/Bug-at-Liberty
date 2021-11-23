@@ -17,7 +17,7 @@ switch (state) {
 			img_index = 0;
 			img_speed = 0.2;
 			move_timer = irandom_range(move_timer_min, move_timer_max);
-			move_angle = irandom(360);
+			move_angle = choose(irandom(360), point_direction(x, y, Ship.x, Ship.y));
 			img_angle = get_octo_image_angle(move_angle);
 
 			hsp = lengthdir_x(move_speed, move_angle);
@@ -60,6 +60,9 @@ if (y + vsp + _padding < Camera.y || y + vsp > Camera.y + Game.base_res_height -
 */
 
 collide_and_move();
+
+// De-spawn if too far away from the camera
+despawn_if_oob();
 
 img_index += img_speed * Game.dt;
 if (img_index > ani_max_frames)

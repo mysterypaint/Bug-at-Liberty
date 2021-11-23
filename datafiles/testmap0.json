@@ -107,17 +107,6 @@
          "objects":[
                 {
                  "height":16,
-                 "id":7,
-                 "name":"EnemyCockroach",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":16,
-                 "x":512,
-                 "y":96
-                }, 
-                {
-                 "height":16,
                  "id":8,
                  "name":"EnemySpiderLarge",
                  "rotation":0,
@@ -168,18 +157,18 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":144,
-                 "y":128
+                 "x":368,
+                 "y":112
                 }, 
                 {
                  "height":16,
                  "id":13,
-                 "name":"EnemySpiderLarge",
+                 "name":"EnemyDungBeetle",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":192,
+                 "x":240,
                  "y":48
                 }, 
                 {
@@ -201,7 +190,7 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":416,
+                 "x":576,
                  "y":32
                 }, 
                 {
@@ -214,6 +203,79 @@
                  "width":16,
                  "x":448,
                  "y":0
+                }, 
+                {
+                 "height":16,
+                 "id":17,
+                 "name":"EnemyWaspNest",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":944,
+                 "y":64
+                }, 
+                {
+                 "height":16,
+                 "id":18,
+                 "name":"EnemyGrasshopper",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":528,
+                 "y":96
+                }, 
+                {
+                 "height":16,
+                 "id":19,
+                 "name":"HelperBugCapsulePrison",
+                 "properties":[
+                        {
+                         "name":"bug_type",
+                         "type":"int",
+                         "value":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":176,
+                 "y":128
+                }, 
+                {
+                 "height":16,
+                 "id":20,
+                 "name":"HelperBugCapsulePrison",
+                 "properties":[
+                        {
+                         "name":"bug_type",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":224,
+                 "y":128
+                }, 
+                {
+                 "height":16,
+                 "id":21,
+                 "name":"HelperBugCapsulePrison",
+                 "properties":[
+                        {
+                         "name":"bug_type",
+                         "type":"int",
+                         "value":2
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":224,
+                 "y":160
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -222,7 +284,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":17,
+ "nextobjectid":22,
  "orientation":"orthogonal",
  "properties":[
         {

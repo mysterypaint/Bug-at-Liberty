@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup2",
   },
   "soundFile": "musMainLevel.ogg",
-  "duration": 39.375,
+  "duration": 58.9535,
   "parent": {
     "name": "BGM",
     "path": "folders/Sounds/BGM.yy",

@@ -80,6 +80,32 @@ with (Camera) {
 hsp = Game.move_x * move_speed + _mx;
 vsp = Game.move_y * move_speed + _my;
 
+if (Game.move_x != 0 || Game.move_y != 0) {
+	//Shift all the X/Y previous positions down the bank
+	for (var i = 29; i > 0; i--;) {
+		player_ghost_x[i] = player_ghost_x[i - 1];
+		player_ghost_y[i] = player_ghost_y[i - 1];
+	}
+	
+	//Finally, store X/Y in the first position
+	player_ghost_x[0] = x + hsp;
+	player_ghost_y[0] = y + vsp;
+}
+
+// Regardless we're moving or not, update every single X/Y ghost position with the camera scrolling
+for (var i = 29; i >= 0; i--;) {
+	player_ghost_x[i] += _mx * Game.dt;
+	player_ghost_y[i] += _my * Game.dt;
+}
+
+// Update all the helpers' positions
+for (var _i = 2; _i >= 0; _i--) {
+	var _this_helper = helpers[_i];
+	_this_helper.x = player_ghost_x[_i * 10 + 9] + _mx;
+	_this_helper.y = player_ghost_y[_i * 10 + 9] + _my;
+}
+
+
 // Horizontal collision check
 
 /*
@@ -91,7 +117,7 @@ var _enemy_id = instance_place(x + hsp, y, ParentEnemy);
 
 if (tile_place_meeting(x + hsp, y, 1) || place_meeting(x + hsp, y, ParentSolid) || _enemy_id != noone) {
 	if (_enemy_id != noone) {
-		if (_enemy_id.state != EnemyStates.UNLOADED) {
+		if (_enemy_id.state != EnemyStates.UNLOADED && _enemy_id.can_hurt_player) {
 			kill_player(); // Only kill the player if we collided with the enemy while it's not unloaded
 		}
 	} else
@@ -125,7 +151,7 @@ _enemy_id = instance_place(x, y + vsp, ParentEnemy);
 // Vertical collision check
 if (tile_place_meeting(x, y + vsp, 1) || place_meeting(x, y + vsp, ParentSolid) || _enemy_id != noone) {
 	if (_enemy_id != noone) {
-		if (_enemy_id.state != EnemyStates.UNLOADED)
+		if (_enemy_id.state != EnemyStates.UNLOADED && _enemy_id.can_hurt_player)
 			kill_player(); // Only kill the player if we collided with the enemy while it's not unloaded
 	} else
 		kill_player();
@@ -155,49 +181,7 @@ if (bullet_count < 0)
 if (bullet_count_two < 0)
 	bullet_count_two = 0;
 
-if (Game.key_shoot_pressed) {
-	if (bullet_count < bullet_count_max) {
-		var _bullet = instance_create_depth(x + shoot_x_off, y + shoot_y_off, depth, PlayerBullet);
-		_bullet.bullet_type = bullet_type;
-		_bullet.parent_id = id;
-		_bullet.depth = depth - 1;
-		_bullet.img_index = bullet_type;
-	
-		switch(bullet_type) {
-			case BulletTypes.TERMITE:
-				_bullet.vsp = vsp;
-				break;
-			case BulletTypes.DRAGONFLY:
-				_bullet.vsp = vsp;
-				_bullet.hsp = 4;
-				if (bullet_count_two < bullet_count_two_max) {
-					var _bullet2 = instance_create_depth(x + shoot_x_off, y + shoot_y_off, depth, PlayerBullet);
-					_bullet2.bullet_type = bullet_type;
-					_bullet2.parent_id = id;
-					_bullet2.depth = depth - 1;
-					_bullet2.img_index = bullet_type;
-					_bullet2.hsp = -3;
-					_bullet2.extra_bullet = true; // This is a second bullet, so don't mess with the bullet refresh counter
-					bullet_count_two++;
-				}
-				break;
-			case BulletTypes.STAG_BEETLE:
-				_bullet.hsp = 4;
-				if (bullet_count_two < bullet_count_two_max) {
-					var _bullet2 = instance_create_depth(x + shoot_x_off, y + shoot_y_off, depth, PlayerBullet);
-					_bullet2.bullet_type = bullet_type;
-					_bullet2.parent_id = id;
-					_bullet2.depth = depth - 1;
-					_bullet2.img_index = bullet_type;
-					_bullet2.hsp = -3;
-					_bullet2.extra_bullet = true; // This is a second bullet, so don't mess with the bullet refresh counter
-					bullet_count_two++;
-				}
-				break;
-		}
-		bullet_count++;
-	}
-}
+bullet_shooting();
 
 
 if (Game.key_speedchange_pressed) {

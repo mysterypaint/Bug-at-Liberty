@@ -2,6 +2,11 @@
 // Inherit the parent event
 event_inherited();
 
+cam_bounds_x_min = Game.TILE_SIZE * 50;
+cam_bounds_y_min = Game.TILE_SIZE * 50;
+cam_bounds_x_max = Game.base_res_width + Game.TILE_SIZE * 50;
+cam_bounds_y_max = Game.base_res_height + Game.TILE_SIZE * 50;
+
 sprite_index = sprHandHorizontal1;
 spr_index = sprite_index;
 
@@ -17,6 +22,7 @@ punching_speed = 3;
 
 // Create the arm for this hand
 mask_index = -1;
+
 body_extension = instance_create_depth(-5000, -5000, depth, EnemyBodyExtension);
 body_extension.hp = -2;
 

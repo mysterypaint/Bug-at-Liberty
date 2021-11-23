@@ -29,6 +29,7 @@ switch (state) {
 		} else {
 			wait_timer = -1;
 			state = EnemyStates.ATTACKING;
+			can_hurt_player = true;
 			punching_state = 1;
 		}
 		

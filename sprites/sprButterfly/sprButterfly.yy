@@ -82,7 +82,7 @@
   "nineSlice": null,
   "parent": {
     "name": "TODO",
-    "path": "folders/Objects/Enemies/TODO.yy",
+    "path": "folders/Sprites/Enemies/TODO.yy",
   },
   "resourceVersion": "1.0",
   "name": "sprButterfly",

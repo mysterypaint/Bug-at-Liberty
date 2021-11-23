@@ -48,3 +48,18 @@ img_speed = 0.7;
 img_ani_frames_max = 2;
 
 depth = 0;
+
+helpers_activated = -1;
+
+for (var _i = 29; _i >= 0; _i--) {
+	player_ghost_x[_i] = x;
+	player_ghost_y[_i] = y;
+}
+
+for (var _i = 2; _i >= 0; _i--) {
+	var _this_helper = instance_create_depth(x, y, depth - 1, HelperBug);
+	_this_helper.my_id = _i;
+	_this_helper.parent_id = id;
+	_this_helper.activated = false;
+	helpers[_i] = _this_helper;	
+}

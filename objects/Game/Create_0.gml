@@ -11,6 +11,14 @@ enum GameStates {
 	CREDITS
 };
 
+bullet_sfx[BulletTypes.LADYBUG] = sfxBullet1;
+bullet_sfx[BulletTypes.DRAGONFLY] = sfxBullet2;
+bullet_sfx[BulletTypes.TERMITE] = sfxBullet3;
+bullet_sfx[BulletTypes.BEE] = sfxBullet4;
+bullet_sfx[BulletTypes.MOSQUITO] = sfxBullet5;
+bullet_sfx[BulletTypes.STAG_BEETLE] = sfxBullet6;
+bullet_sfx[BulletTypes.MAX] = sfxBullet7;
+
 state = GameStates.INIT;
 prev_state = state;
 

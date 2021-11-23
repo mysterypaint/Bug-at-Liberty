@@ -48,6 +48,14 @@ switch(Game.state) {
 				var _layers_size = ds_list_size(LevelData.layers);
 	
 				for (var _i = 0; _i < _layers_size; _i++) {
+					if (_i == LevelData.shadow_layer) {
+						draw_set_alpha(shadow_layer_alpha);
+						var _col = c_black;
+						draw_rectangle_color(x-Game.TILE_SIZE, y- Game.TILE_SIZE, x + Game.base_res_width + Game.TILE_SIZE, y + Game.base_res_height + Game.TILE_SIZE, _col, _col, _col, _col, false);
+						draw_set_alpha(1);
+					}
+					
+					
 					var _this_layer = LevelData.layers[| _i];
 					var _this_layer_name = _this_layer[| 0];
 		

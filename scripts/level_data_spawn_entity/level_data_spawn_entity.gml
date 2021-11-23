@@ -8,8 +8,35 @@ function level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation,
 	var _obj_id = noone;
 	
 	switch(_name) {
+		case "HelperBugCapsulePrison":
+			_obj_id = instance_create_depth(_x, _y, 0, HelperBugCapsulePrison);
+			
+			with (_obj_id) {
+				if (!is_undefined(_properties)) {
+						var _num_props = ds_list_size(_properties);
+						for (var _i = 0; _i < _num_props; _i++) {
+							var _this_property = _properties[| _i];
+							var _prop_name = _this_property[? "name"];
+							var _prop_type = _this_property[? "type"];
+							var _prop_value = _this_property[? "value"];
+					
+							switch(_prop_name) {
+								case "bug_type":
+									bug_type = _prop_value;
+									break;
+							}
+						}
+					}
+			}
+			break;
 		case "Checkpoint":
 			_obj_id = instance_create_depth(_x, _y, 0, Checkpoint);
+			break;
+		case "EnemyWaspNest":
+			_obj_id = instance_create_depth(_x, _y, 0, EnemyWaspNest);
+			break;
+		case "EnemyGrasshopper":
+			_obj_id = instance_create_depth(_x, _y + 16, 0, EnemyGrasshopper);
 			break;
 		case "EnemyHandSingleVertical":
 			_obj_id = instance_create_depth(_x, _y, 0, EnemyHandSingleVertical);

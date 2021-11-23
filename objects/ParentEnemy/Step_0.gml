@@ -6,8 +6,10 @@ switch (state) {
 	case EnemyStates.UNLOADED:
 		if (Camera.x + Game.base_res_width < x)
 			exit; // The player has not reached this enemy yet.
-		else
+		else {
 			state = EnemyStates.IDLE;
+			can_hurt_player = true;
+		}
 		break;
 	case EnemyStates.IDLE:
 		break;
@@ -18,6 +20,9 @@ switch (state) {
 	case EnemyStates.DYING:
 		break;
 }
+
+// De-spawn if too far away from the camera
+despawn_if_oob();
 
 img_index += img_speed * Game.dt;
 if (img_index > ani_max_frames)

@@ -4,7 +4,7 @@
 // Inherit the parent event
 event_inherited();
 
-hp = 1;
+hp = 5;
 move_speed = 1;
 shoot_frequency = 150;
 

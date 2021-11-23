@@ -62,6 +62,9 @@ if (y + vsp + _padding < Camera.y || y + vsp > Camera.y + Game.base_res_height -
 
 collide_and_move();
 
+// De-spawn if too far away from the camera
+despawn_if_oob();
+
 img_index += img_speed * Game.dt;
 if (img_index > ani_max_frames)
 	img_index = 0;
