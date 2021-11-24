@@ -15,6 +15,10 @@ function respawn_room_entities(){
 		instance_destroy(EnemyExplosion);
 	if (instance_exists(PlayerExplosion))
 		instance_destroy(PlayerExplosion);
+	if (instance_exists(EnemyLightning))
+		instance_destroy(EnemyLightning);
+	if (instance_exists(EnemyOverlayFan))
+		instance_destroy(EnemyOverlayFan);
 
 	if (ds_exists(_lvl_obj.instances, ds_type_list)) {
 		var _num_instances = ds_list_size(_lvl_obj.instances);

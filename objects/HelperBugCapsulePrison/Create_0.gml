@@ -24,6 +24,7 @@ img_diagonal_angle = false;
 
 ani_max_frames = sprite_get_number(spr_index);
 time_alive = 0;
+destroyed_cage = false;
 
 hsp = 0;
 vsp = 0;

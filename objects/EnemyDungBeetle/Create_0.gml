@@ -31,6 +31,6 @@ vsp = 0;
 move_speed = 0.4;
 touched_ball = false;
 
-hp = 7;
+hp = 2;
 
 has_ball = true;

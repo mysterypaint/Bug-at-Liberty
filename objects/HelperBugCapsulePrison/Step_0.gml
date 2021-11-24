@@ -24,8 +24,9 @@ switch (state) {
 		}
 		break;
 	case EnemyStates.IDLE:
-		var _inst_ship = instance_place(x, y, Ship);
-		if (_inst_ship != noone) {
+		var _inst_player_bullet = instance_place(x, y, PlayerBullet);
+		if (_inst_player_bullet != noone) {
+			var _inst_ship = Ship;
 			if (_inst_ship.dead)
 				exit;
 			var _helper_spr_index = sprDragonfly;

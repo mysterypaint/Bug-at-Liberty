@@ -140,7 +140,7 @@ function level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation,
 			_obj_id = instance_create_depth(_x, _y, 0, EnemySpiderSmall);
 			break;
 		case "EnemyCockroach":
-			_obj_id = instance_create_depth(_x, _y, 0, EnemyCockroach);
+			_obj_id = instance_create_depth(_x + 8, _y + 16, 0, EnemyCockroach);
 			break;
 	}
 	//_obj_id.visible = _visible;

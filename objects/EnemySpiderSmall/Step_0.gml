@@ -17,7 +17,8 @@ switch (state) {
 			img_index = 0;
 			img_speed = 0.2;
 			move_timer = irandom_range(move_timer_min, move_timer_max);
-			move_angle = choose(irandom(360), point_direction(x, y, Ship.x, Ship.y));
+			var _toward_player = point_direction(x, y, Ship.x, Ship.y);
+			move_angle = choose(irandom(360), _toward_player, _toward_player);
 			img_angle = get_octo_image_angle(move_angle);
 
 			hsp = lengthdir_x(move_speed, move_angle);

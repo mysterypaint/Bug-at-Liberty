@@ -20,13 +20,15 @@ switch (state) {
 			var _toward_player = point_direction(x, y, Ship.x, Ship.y);
 			if (Ship.dead)
 				_toward_player = irandom(360);
-			move_angle = choose(irandom(360), _toward_player); // 50/50 chance of moving toward the player, or in a random direction
+			move_angle = choose(irandom(360), _toward_player, _toward_player); // 50/50 chance of moving toward the player, or in a random direction
 			img_angle = set_spider_image_angle(move_angle);
 
 			if (img_diagonal_angle)
-				img_index_offset = 9;
+				//img_index_offset = 9;
+				spr_index = sprBigSpiderDiagonal;
 			else
-				img_index_offset = 0;
+				//img_index_offset = 0;
+				spr_index = sprBigSpiderCardinal;
 
 			hsp = lengthdir_x(move_speed, move_angle);
 			vsp = lengthdir_y(move_speed, move_angle);
