@@ -121,8 +121,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "TODO",
-    "path": "folders/Sprites/Enemies/TODO.yy",
+    "name": "Allies",
+    "path": "folders/Sprites/Player/Allies.yy",
   },
   "resourceVersion": "1.0",
   "name": "sprCapsulePrisonButterfly",

@@ -1,7 +1,9 @@
 /// @description Insert description here
 if (activated) {
 	draw_me = true;
-	bullet_shooting();
+	
+	if (Game.state != GameStates.PAUSED)
+		bullet_shooting();
 }
 
 img_index += img_speed * Game.dt;

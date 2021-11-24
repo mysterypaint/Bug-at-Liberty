@@ -13,16 +13,21 @@ init_player_reset = 10; // Frames it takes for the player to regain control when
 init_player = init_player_reset;
 
 enum Fighters {
-	LADYBUG,
+	STARTING,
+	BUTTERFLY,
 	DRAGONFLY,
-	TERMITE,
-	BEE,
-	MOSQUITO,
-	STAG_BEETLE,
+	FIREFLY,
+	BEEMISSILE,
 	MAX
 };
 
-current_fighter = Fighters.LADYBUG;
+bullet_sprites[0] = sprBulletStarting;
+bullet_sprites[1] = sprBulletButterfly;
+bullet_sprites[2] = sprBulletDragonfly;
+bullet_sprites[3] = sprBulletFirefly;
+bullet_sprites[4] = sprBulletBeeMissile;
+
+current_fighter = Fighters.STARTING;
 
 spr_x_off = sprite_get_xoffset(sprite_index);
 spr_y_off = sprite_get_yoffset(sprite_index);
@@ -50,6 +55,7 @@ img_ani_frames_max = 2;
 depth = 0;
 
 helpers_activated = -1;
+wind_drag_speed = -0.4;
 
 for (var _i = 29; _i >= 0; _i--) {
 	player_ghost_x[_i] = x;

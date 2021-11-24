@@ -8,6 +8,15 @@ function level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation,
 	var _obj_id = noone;
 	
 	switch(_name) {
+		case "EnemyPrayingMantis":
+			_obj_id = instance_create_depth(_x, _y + 16, 0, EnemyPrayingMantis);
+			break;
+		case "EnemyDungBeetle":
+			_obj_id = instance_create_depth(_x, _y + 16, 0, EnemyDungBeetle);
+			break;
+		case "EnemyDungBall":
+			_obj_id = instance_create_depth(_x, _y + 16, 0, EnemyDungBall);
+			break;
 		case "HelperBugCapsulePrison":
 			_obj_id = instance_create_depth(_x, _y, 0, HelperBugCapsulePrison);
 			

@@ -22,6 +22,7 @@ cam_bounds_y_max = Game.base_res_height + Game.TILE_SIZE * 4;
 
 state = EnemyStates.UNLOADED;
 can_hurt_player = false;
+has_small_explosion = true;
 
 spr_index = sprite_index;
 img_index = 0;

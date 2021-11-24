@@ -15,7 +15,7 @@ my_id = undefined;
 parent_id = noone;
 
 shoot_x_off = 14;
-shoot_y_off = 10;
+shoot_y_off = 15;
 
 bullet_count = 0;
 bullet_count_max = 3;

@@ -76,35 +76,16 @@ with (Camera) {
 
 
 // Step the Player
-
-hsp = Game.move_x * move_speed + _mx;
-vsp = Game.move_y * move_speed + _my;
-
-if (Game.move_x != 0 || Game.move_y != 0) {
-	//Shift all the X/Y previous positions down the bank
-	for (var i = 29; i > 0; i--;) {
-		player_ghost_x[i] = player_ghost_x[i - 1];
-		player_ghost_y[i] = player_ghost_y[i - 1];
+var _fan = instance_find(EnemyOverlayFan, 0);
+var _wind_drag = 0;
+if (_fan != noone) {
+	if (_fan.img_speed > 0) {
+		_wind_drag = wind_drag_speed;
 	}
-	
-	//Finally, store X/Y in the first position
-	player_ghost_x[0] = x + hsp;
-	player_ghost_y[0] = y + vsp;
 }
 
-// Regardless we're moving or not, update every single X/Y ghost position with the camera scrolling
-for (var i = 29; i >= 0; i--;) {
-	player_ghost_x[i] += _mx * Game.dt;
-	player_ghost_y[i] += _my * Game.dt;
-}
-
-// Update all the helpers' positions
-for (var _i = 2; _i >= 0; _i--) {
-	var _this_helper = helpers[_i];
-	_this_helper.x = player_ghost_x[_i * 10 + 9] + _mx;
-	_this_helper.y = player_ghost_y[_i * 10 + 9] + _my;
-}
-
+hsp = Game.move_x * move_speed + _mx + _wind_drag;
+vsp = Game.move_y * move_speed + _my;
 
 // Horizontal collision check
 
@@ -141,6 +122,7 @@ if (place_meeting(x + hsp, y, Camera.x) || place_meeting(x + hsp, y, Camera.x + 
 if (x + hsp <= Camera.x) {
 	x = Camera.x;
 	hsp = 0;
+	_wind_drag = 0;
 } else if (x + hsp >= Camera.x + Game.base_res_width) {
 	x = Camera.x + Game.base_res_width;
 	hsp = 0;
@@ -173,6 +155,34 @@ if (y + vsp <= Camera.y) {
 	y = round(y);
 } else
 	y += vsp * Game.dt;
+
+
+
+// Helper ghost x/y handling
+if (Game.move_x != 0 || Game.move_y != 0) {
+	//Shift all the X/Y previous positions down the bank
+	for (var i = 29; i > 0; i--;) {
+		player_ghost_x[i] = player_ghost_x[i - 1];
+		player_ghost_y[i] = player_ghost_y[i - 1];
+	}
+	
+	//Finally, store X/Y in the first position
+	player_ghost_x[0] = x;
+	player_ghost_y[0] = y;
+}
+
+// Regardless we're moving or not, update every single X/Y ghost position with the camera scrolling
+for (var i = 29; i >= 0; i--;) {
+	player_ghost_x[i] += (_mx + _wind_drag) * Game.dt;
+	player_ghost_y[i] += _my * Game.dt;
+}
+
+// Update all the helpers' positions
+for (var _i = 2; _i >= 0; _i--) {
+	var _this_helper = helpers[_i];
+	_this_helper.x = player_ghost_x[_i * 10 + 9] + _mx;
+	_this_helper.y = player_ghost_y[_i * 10 + 9] + _my;
+}
 
 
 // Implement shooting

@@ -5,15 +5,17 @@ function bullet_shooting(){
 		exit;
 
 	if (Game.key_shoot_pressed) {
-		var _ship_bullet_type = Ship.bullet_type;
-		var _ship_vsp = Ship.vsp;
+		var _ship = Ship;
+		var _ship_bullet_type = _ship.bullet_type;
+		var _ship_vsp = _ship.vsp;
 		
 		if (bullet_count < bullet_count_max) {
 			var _bullet = instance_create_depth(x + shoot_x_off, y + shoot_y_off, depth, PlayerBullet);
 			_bullet.bullet_type = _ship_bullet_type;
 			_bullet.parent_id = id;
 			_bullet.depth = depth - 1;
-			_bullet.img_index = _ship_bullet_type;
+			_bullet.sprite_index = _ship.bullet_sprites[_ship_bullet_type];
+			_bullet.spr_index = _bullet.sprite_index;
 			
 			var _bullet_sfx = Game.bullet_sfx[_ship_bullet_type];
 			sfx_play(_bullet_sfx, 0, false);
@@ -29,7 +31,8 @@ function bullet_shooting(){
 						_bullet2.bullet_type = _ship_bullet_type;
 						_bullet2.parent_id = id;
 						_bullet2.depth = depth - 1;
-						_bullet2.img_index = _ship_bullet_type;
+						_bullet2.sprite_index = _ship.bullet_sprites[_ship_bullet_type];
+						_bullet2.spr_index = _bullet.sprite_index;
 						_bullet2.hsp = -3;
 						_bullet2.extra_bullet = true; // This is a second bullet, so don't mess with the bullet refresh counter
 						bullet_count_two++;
@@ -42,7 +45,8 @@ function bullet_shooting(){
 						_bullet2.bullet_type = _ship_bullet_type;
 						_bullet2.parent_id = id;
 						_bullet2.depth = depth - 1;
-						_bullet2.img_index = _ship_bullet_type;
+						_bullet2.sprite_index = _ship.bullet_sprites[_ship_bullet_type];
+						_bullet2.spr_index = _bullet.sprite_index;
 						_bullet2.hsp = -3;
 						_bullet2.extra_bullet = true; // This is a second bullet, so don't mess with the bullet refresh counter
 						bullet_count_two++;

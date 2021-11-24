@@ -102,7 +102,7 @@ switch(Game.state) {
 		draw_set_alpha(hud_alpha);
 		
 		// Weapon boxes & Cursor
-		var _len = BulletTypes.MAX;
+		var _len = Fighters.MAX;
 		for (var _i = 0; _i < _len; _i++) {
 			draw_sprite(sprHUDWeaponBox, 0, x + (_i * weapon_box_width) + weapon_hud_xoff, y + weapon_hud_yoff);
 			draw_sprite(sprHUDWeapons, _i, x + (_i * weapon_box_width) + weapon_hud_xoff, y + weapon_hud_yoff);
@@ -154,6 +154,12 @@ switch(Game.state) {
 				draw_set_color(c_white);
 			}
 			checkpoint_display_timer -= Game.dt;
+		}
+		
+		if (instance_exists(ParentVFX)) {
+			with (ParentVFX) {
+				event_perform(ev_draw, 0);
+			}
 		}
 		
 		if (instance_exists(FadeEffect)) {
