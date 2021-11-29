@@ -7,11 +7,11 @@ if (a == 1) {
 			with (parent_id) {
 				// Reset the room
 				Game.player_lives--;
-				dead = false;
-				draw_me = true;
-				init_player = init_player_reset;
+				if (Game.player_lives > 0) {
+					dead = false;
+					draw_me = true;
+					init_player = init_player_reset;
 				
-				if (Game.player_lives >= 0) {
 					respawn_room_entities();
 					//audio_play_sound(Game.curr_bgm, 0, true);
 					Camera.checkpoint_display_timer = 0;
@@ -24,15 +24,23 @@ if (a == 1) {
 						player_ghost_y[_i] = y;
 					}
 					
-					// Remove all of the player's helpers
+					if (Game.reset_helpers_on_death) {
+						// Remove all of the player's helpers
 					
-					for (var _i = 2; _i >= 0; _i--) {
-						var _this_helper = helpers[_i];
-						_this_helper.activated = false;
-						_this_helper.draw_me = false;
+						for (var _i = 2; _i >= 0; _i--) {
+							var _this_helper = helpers[_i];
+							_this_helper.activated = false;
+							_this_helper.draw_me = false;
+						}
+						helpers_activated = -1;	
+					} else {
+						// Update all the helpers' positions
+						for (var _i = 2; _i >= 0; _i--) {
+							var _this_helper = helpers[_i];
+							_this_helper.x = player_ghost_x[_i * 10 + 9];
+							_this_helper.y = player_ghost_y[_i * 10 + 9];
+						}
 					}
-					
-					helpers_activated = -1;
 				}
 				
 			}

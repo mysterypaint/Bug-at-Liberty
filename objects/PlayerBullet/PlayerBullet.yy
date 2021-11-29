@@ -8,8 +8,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "ParentDraw",
-    "path": "objects/ParentDraw/ParentDraw.yy",
+    "name": "ParentPlayerBullet",
+    "path": "objects/ParentPlayerBullet/ParentPlayerBullet.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

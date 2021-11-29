@@ -30,9 +30,10 @@ time_alive = 0;
 lightning_speed = 18;
 active_frame = 50;
 white_screen = false;
-flash_rate = 4;
+flash_rate = 5;
+flash_alpha = 0.6;
 
 hsp = 0;
 vsp = 0;
 
-hp = -2;
+hp = -99999;

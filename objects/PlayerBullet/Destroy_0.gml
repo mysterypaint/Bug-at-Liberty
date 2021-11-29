@@ -8,3 +8,7 @@ if (!extra_bullet) { // Make sure this bullet didn't spawn simultaneously with a
 		bullet_count_two--; // Forget about this bullet within the ship
 	}
 }
+
+if (bullet_type == BulletTypes.FIREFLY) {
+	instance_create_depth(x, y, depth, BulletFireflyExplosion);
+}

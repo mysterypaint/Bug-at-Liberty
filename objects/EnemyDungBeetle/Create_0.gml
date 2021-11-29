@@ -26,9 +26,15 @@ img_diagonal_angle = false;
 ani_max_frames = sprite_get_number(spr_index);
 time_alive = 0;
 
+
 hsp = 0;
 vsp = 0;
 move_speed = 0.4;
+jump_speed = 4;
+grav = 0.2;
+grav_max = 4;
+grounded = false;
+move_right_first = false;
 touched_ball = false;
 
 hp = 2;

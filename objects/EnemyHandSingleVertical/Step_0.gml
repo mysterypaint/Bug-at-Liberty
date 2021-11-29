@@ -1,5 +1,5 @@
 /// @description State Machine; Kill if <0 HP
-if (hp <= 0 && hp > -2)
+if (hp <= 0 && hp > -99999)
 	instance_destroy();
 
 switch (state) {
@@ -9,6 +9,8 @@ switch (state) {
 		else {
 			state = EnemyStates.IDLE;
 			draw_me = true;
+			can_hurt_player = true;
+			body_extension.can_hurt_player = true;
 			//mask_index = sprite_index;
 			if (!moving_left) {
 				x = Camera.x + x_offset;

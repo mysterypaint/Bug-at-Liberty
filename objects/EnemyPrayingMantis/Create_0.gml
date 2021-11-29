@@ -35,7 +35,7 @@ time_alive = 0;
 hsp = 0;
 vsp = 0;
 
-hp = 55;
+hp = 35;
 
 cast_timer_reset = 200;
 cast_timer = cast_timer_reset;

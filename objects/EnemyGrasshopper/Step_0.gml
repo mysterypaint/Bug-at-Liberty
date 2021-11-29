@@ -1,13 +1,15 @@
 /// @description State Machine; Kill if <0 HP
-if (hp <= 0 && hp > -2)
+if (hp <= 0 && hp > -99999)
 	instance_destroy();
 
 switch (state) {
 	case EnemyStates.UNLOADED:
 		if (Camera.x + Game.base_res_width < x)
 			exit; // The player has not reached this enemy yet.
-		else
+		else {
 			state = EnemyStates.IDLE;
+			can_hurt_player = true;
+		}
 		break;
 	case EnemyStates.IDLE:
 		if (jump_timer <= 0) {
@@ -25,18 +27,31 @@ switch (state) {
 		if (vsp < grav_max)
 			vsp += grav * Game.dt;
 		
+		if (grounded) {
+			if (jump_timer <= 0) {
+				img_index_offset = 1;
+				state = EnemyStates.JUMPING;
+				vsp = -jump_speed;
+				jump_timer = jump_timer_reset;
+			} else {
+				jump_timer -= Game.dt;
+			}
+		}
+		
 		// Go back to idle if we landed on the ground
 		if (tile_place_meeting(x, y + vsp, 1) && vsp > 0) {
 			while (!tile_place_meeting(x, y + 1, 1)) {
 				y++;
 			}
 			vsp = 0;
-			state = EnemyStates.IDLE;
+			grounded = true;
 			img_index_offset = 0;
+		} else {
+			grounded = false;
 		}
 		
 		// Horizontal Collision Check
-		if (place_meeting(x + hsp, y, Camera.x) || place_meeting(x + hsp, y, Camera.x + Game.base_res_width)) {
+		if (tile_place_meeting(x + hsp, y, 1) ||place_meeting(x + hsp, y, Camera.x) || place_meeting(x + hsp, y, Camera.x + Game.base_res_width)) {
 			while(!tile_place_meeting(x + sign(hsp), y, 1) &&
 					!place_meeting(x + sign(hsp), y, ParentSolid) &&
 					!place_meeting(x + sign(hsp), y, Camera.x) &&

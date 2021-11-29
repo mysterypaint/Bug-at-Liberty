@@ -1,6 +1,8 @@
 /// @description
 global_debug = true;
 debug = false;
+reset_helpers_on_death = true;
+unlock_all_weapons = false;
 
 enum GameStates {
 	INIT,
@@ -13,18 +15,24 @@ enum GameStates {
 
 bullet_sfx[BulletTypes.LADYBUG] = sfxBullet1;
 bullet_sfx[BulletTypes.DRAGONFLY] = sfxBullet2;
-bullet_sfx[BulletTypes.TERMITE] = sfxBullet3;
+bullet_sfx[BulletTypes.BUTTERFLY] = sfxBullet3;
 bullet_sfx[BulletTypes.BEE] = sfxBullet4;
-bullet_sfx[BulletTypes.MOSQUITO] = sfxBullet5;
+bullet_sfx[BulletTypes.FIREFLY] = sfxBullet5;
 bullet_sfx[BulletTypes.STAG_BEETLE] = sfxBullet6;
 bullet_sfx[BulletTypes.MAX] = sfxBullet7;
 
 state = GameStates.INIT;
 prev_state = state;
+curr_bgm = undefined;
+bgm = undefined;
+bgm_intro_length = 0.0;
+bgm_loop_length = 0.0;
+bgm_total_length = 0.0;
 
 tick = 0;
 pause_timer = 0;
 pause_timer_reset = 10;
+title_screen_show_controls = false;
 
 base_res_width = 320;
 base_res_height = 180;
@@ -46,16 +54,31 @@ key_right_alt = ord("D");
 key_shoot = ord("Z");
 key_shoot_alt = ord("J");
 
-key_speedchange = ord("L");
-key_speedchange_alt = ord("C");
+key_weapon_change_forward = ord("L");
+key_weapon_change_forward_alt = ord("C");
+key_weapon_change_backward = ord("K");
+key_weapon_change_backward_alt = ord("X");
 
 key_confirm = ord("K");
-key_confirm_alt = ord("Z");
+key_confirm_alt = ord("X");
+key_cancel = ord("J");
+key_cancel_alt = ord("Z");
 
 key_pause = vk_enter;
 key_pause_alt = ord("H");
 
+enabled_weapons[Fighters.STARTING] = true;
+enabled_weapons[Fighters.DRAGONFLY] = false;
+enabled_weapons[Fighters.BUTTERFLY] = false;
+enabled_weapons[Fighters.BEEMISSILE] = false;
+enabled_weapons[Fighters.FIREFLY] = false;
 
+if (unlock_all_weapons) {
+	enabled_weapons[Fighters.DRAGONFLY] = true;
+	enabled_weapons[Fighters.BUTTERFLY] = true;
+	enabled_weapons[Fighters.BEEMISSILE] = true;
+	enabled_weapons[Fighters.FIREFLY] = true;
+}
 playerShip = noone;
 
 
@@ -80,15 +103,13 @@ TILE_SIZE = 16;
 
 dt = 1; // Delta Time
 
-curr_bgm = -1;
-
 // Textbox stuff
 enum Portraits {
 	LADYBUG,
 	DRAGONFLY,
-	TERMITE,
+	BUTTERFLY,
 	BEE,
-	MOSQUITO,
+	FIREFLY,
 	STAG_BEETLE,
 	MAX
 };

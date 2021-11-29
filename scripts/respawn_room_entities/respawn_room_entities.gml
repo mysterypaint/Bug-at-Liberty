@@ -11,6 +11,10 @@ function respawn_room_entities(){
 		instance_destroy(Textbox);
 	if (instance_exists(ParentEnemyBullet))
 		instance_destroy(ParentEnemyBullet);
+	if (instance_exists(ParentPlayerBullet))
+		instance_destroy(ParentPlayerBullet);
+	if (instance_exists(PlayerPowerup))
+		instance_destroy(PlayerPowerup);
 	if (instance_exists(EnemyExplosion))
 		instance_destroy(EnemyExplosion);
 	if (instance_exists(PlayerExplosion))
@@ -20,6 +24,7 @@ function respawn_room_entities(){
 	if (instance_exists(EnemyOverlayFan))
 		instance_destroy(EnemyOverlayFan);
 
+	// Destroy all the enemies we originally spawned
 	if (ds_exists(_lvl_obj.instances, ds_type_list)) {
 		var _num_instances = ds_list_size(_lvl_obj.instances);
 		for (var _i = 0; _i < _num_instances; _i++) {
@@ -33,6 +38,7 @@ function respawn_room_entities(){
 		ds_list_destroy(_lvl_obj.instances);
 	}
 
+	// Destroy any remaining enemies in the room
 	if (instance_exists(ParentEnemy))
 		instance_destroy(ParentEnemy);
 

@@ -32,4 +32,4 @@ roll_speed = 1;
 grav_max = 9.81;
 grav = 0.2;
 bounce_speed = -6;
-hp = -2; // Invincible
+hp = -99999; // Invincible

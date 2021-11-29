@@ -12,6 +12,7 @@ cam_bounds_y_max = Game.base_res_height + Game.TILE_SIZE * 4;
 state = EnemyStates.UNLOADED;
 
 spr_index = sprite_index;
+mask_index = spr_index;
 img_index = 0;
 img_index_offset = 0;
 img_speed = 0;
@@ -31,6 +32,7 @@ move_speed = 3;
 jump_speed = 4;
 grav = 0.2;
 grav_max = 4;
+grounded = false;
 
 hp = 20;
 

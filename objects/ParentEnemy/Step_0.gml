@@ -1,5 +1,5 @@
 /// @description State Machine; Kill if <0 HP
-if (hp <= 0 && hp > -2)
+if (hp <= 0 && hp > -99999)
 	instance_destroy();
 
 switch (state) {

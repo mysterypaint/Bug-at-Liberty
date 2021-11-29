@@ -13,7 +13,7 @@ spr_index = sprite_index;
 wait_timer = 0;
 draw_me = false;
 moving_left = false;
-hp = -2; // Infinite HP
+hp = -99999; // Infinite HP
 
 padding = 2;
 
@@ -24,7 +24,7 @@ punching_speed = 3;
 mask_index = -1;
 
 body_extension = instance_create_depth(-5000, -5000, depth, EnemyBodyExtension);
-body_extension.hp = -2;
+body_extension.hp = -99999;
 
 if (spr_index == sprHandHorizontal1) {
 	body_extension.sprite_index = sprArmHorizontal1;

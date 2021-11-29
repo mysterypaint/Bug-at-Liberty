@@ -25,7 +25,7 @@ move_speed = 2;
 hsp = 0;
 vsp = 0;
 
-hp = 10;
+hp = 5;
 
 // Timer to count how long the Wasp should wait before flying at the player
 move_timer_reset = 50;

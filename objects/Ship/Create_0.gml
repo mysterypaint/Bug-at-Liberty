@@ -8,24 +8,24 @@ move_speed = 2;
 
 dead = false;
 death_timer = -1;
-death_timer_reset = 370;
+death_timer_reset = 180;//370;
 init_player_reset = 10; // Frames it takes for the player to regain control when they spawn
 init_player = init_player_reset;
 
 enum Fighters {
 	STARTING,
-	BUTTERFLY,
 	DRAGONFLY,
-	FIREFLY,
+	BUTTERFLY,
 	BEEMISSILE,
+	FIREFLY,
 	MAX
 };
 
-bullet_sprites[0] = sprBulletStarting;
-bullet_sprites[1] = sprBulletButterfly;
-bullet_sprites[2] = sprBulletDragonfly;
-bullet_sprites[3] = sprBulletFirefly;
-bullet_sprites[4] = sprBulletBeeMissile;
+bullet_sprites[Fighters.STARTING] = sprBulletStarting;
+bullet_sprites[Fighters.BUTTERFLY] = sprBulletButterfly;
+bullet_sprites[Fighters.DRAGONFLY] = sprBulletDragonfly;
+bullet_sprites[Fighters.FIREFLY] = sprBulletFirefly;
+bullet_sprites[Fighters.BEEMISSILE] = sprBulletBeeMissile;
 
 current_fighter = Fighters.STARTING;
 
@@ -40,6 +40,9 @@ bullet_count_max = 3;
 bullet_count_two = 0;
 bullet_count_two_max = 4;
 bullet_type = 0;
+
+butterfly_cooldown_timer_reset = 40;
+butterfly_cooldown_timer = 0;
 
 enum ShipAnimations {
 	NEUTRAL,

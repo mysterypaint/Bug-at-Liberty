@@ -31,7 +31,7 @@ time_alive = 0;
 hsp = 0;
 vsp = 0;
 
-hp = -2;
+hp = -99999;
 
 fan_y[2] = 21;
 fan_y[1] = 73;

@@ -11,7 +11,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "sfxBullet4.wav",
-  "duration": 0.374989,
+  "duration": 0.252333,
   "parent": {
     "name": "SFX",
     "path": "folders/Sounds/SFX.yy",

@@ -8,12 +8,12 @@ function get_bullet_type_name(){
 			return "Dragonfly";
 		case BulletTypes.LADYBUG:
 			return "Ladybug";
-		case BulletTypes.MOSQUITO:
-			return "Mosquito";
+		case BulletTypes.FIREFLY:
+			return "Firefly";
 		case BulletTypes.STAG_BEETLE:
 			return "Stag Beetle";
-		case BulletTypes.TERMITE:
-			return "Termite";
+		case BulletTypes.BUTTERFLY:
+			return "Butterfly";
 	}
 	
 	return "Undefined";

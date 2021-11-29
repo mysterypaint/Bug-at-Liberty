@@ -15,3 +15,4 @@ function shoot_at_player(_type) {
 		_new_bullet.spd = 1.7;
 	}
 }
+

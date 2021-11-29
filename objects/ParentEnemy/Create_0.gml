@@ -41,4 +41,4 @@ time_alive = 0;
 hsp = 0;
 vsp = 0;
 
-hp = 7;
+hp = 4;

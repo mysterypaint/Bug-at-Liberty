@@ -12,27 +12,46 @@ var _hts = _ts / 2;
 
 switch(Game.state) {
 	case GameStates.TITLE:
-		draw_text(15 * _hts, 1 * _hts, "\n\nBug Shmup");
-		if (Game.tick % Game.TITLE_BLINK_SPEED == 0)
-			Game.show_titlescreen_prompt = !Game.show_titlescreen_prompt;
+		if (!Game.title_screen_show_controls) {
+			draw_sprite(sprTitleScreen, 0, 0, 0);
+			draw_text(17 * _hts, 1 * _hts, "\n\nBug Shmup");
+			if (Game.tick % Game.TITLE_BLINK_SPEED == 0)
+				Game.show_titlescreen_prompt = !Game.show_titlescreen_prompt;
 		
-		draw_set_color(c_yellow);
-		if (Game.show_titlescreen_prompt)
-			draw_text(13 * _hts, 7 * _hts, "- Press Pause -");
-		
-		draw_set_color(c_white);
-		draw_text(0 * _hts, 10 * _hts, "- Controls -\nWASD/Arrow Keys - Move the Ship\nZ/J - Shoot Bullets, Menu Cancel\nC/L - Cycle through Bug Fighters (Tentative)\nEnter/H - Pause, Menu Confirm\n\nF7 - Window Size\nF4 (or Alt+Enter) - Toggle Fullscreen");
+			draw_set_color(c_yellow);
+			if (Game.show_titlescreen_prompt)
+				draw_text(11 * _hts, 7 * _hts, "- Press Pause to begin -");
+			
+			draw_set_color(c_dkgray);
+			draw_text(0 * _hts, 11 * _hts, "- Press X to view game controls -");
+			if (keyboard_check_pressed(ord("X")))
+				Game.title_screen_show_controls = true;
+		} else {
+			if (Game.key_confirm_pressed || Game.key_cancel_pressed)
+				Game.title_screen_show_controls = false;
+			draw_set_color(c_black);
+			draw_rectangle(0, 0, Game.base_res_width, Game.base_res_height, false);
+			var _controls = "- Controls -\nWASD/Arrow Keys - Move the Ship\nZ/J - Shoot Bullets, Menu Cancel\nX/K, C/L - Cycle through weapons\nX/K - Menu Confirm\nEnter/H - Pause\n\nF7 - Window Size\nF4 (or Alt+Enter) - Toggle Fullscreen\n\n\nPress 'Menu Confirm' or 'Menu Cancel' to return.";
+			draw_set_color(c_dkgray);
+			draw_text(0 * _hts + 1, 0 * _hts + 1, _controls);
+			draw_set_color(c_white);
+			draw_text(0 * _hts, 0 * _hts, _controls);
+		}
 		break;
 	case GameStates.GAMEOVER:
-		draw_set_color(c_white);
-		draw_text(0, 0, "gmae over lol\n\nu fukken died!");
-		draw_set_color(c_yellow);
+		//draw_set_color(c_white);
+		//draw_text(0, 0, "gmae over lol\n\nu fukken died!");
+		draw_sprite(sprGameOver, 0, 0, 0);
+		
 		if (Game.tick % Game.TITLE_BLINK_SPEED == 0)
 			Game.show_titlescreen_prompt = !Game.show_titlescreen_prompt;
 
-		if (Game.show_titlescreen_prompt)
-			draw_text(5 * _hts, 10 * _hts, "pres Pause to reset the gmae :WUO:");
-		
+		if (Game.show_titlescreen_prompt) {
+			draw_set_color(c_orange);
+			draw_text(3 * _hts + 1, 13 * _hts + 1, "Press Pause to return to the Title Screen");
+			draw_set_color(c_yellow);
+			draw_text(3 * _hts, 13 * _hts, "Press Pause to return to the Title Screen");
+		}
 		if (instance_exists(FadeEffect)) {
 			with (FadeEffect) {
 				event_perform(ev_draw, 0);
@@ -105,7 +124,8 @@ switch(Game.state) {
 		var _len = Fighters.MAX;
 		for (var _i = 0; _i < _len; _i++) {
 			draw_sprite(sprHUDWeaponBox, 0, x + (_i * weapon_box_width) + weapon_hud_xoff, y + weapon_hud_yoff);
-			draw_sprite(sprHUDWeapons, _i, x + (_i * weapon_box_width) + weapon_hud_xoff, y + weapon_hud_yoff);
+			var _weapon_enabled = Game.enabled_weapons[_i];
+			draw_sprite(sprHUDWeapons, (_i * 2) + _weapon_enabled, x + (_i * weapon_box_width) + weapon_hud_xoff, y + weapon_hud_yoff);
 			
 			if (_i == Ship.bullet_type)
 				draw_sprite(sprHUDWeaponCursor, _i, x + (_i * weapon_box_width) + weapon_hud_xoff + 1, y + weapon_hud_yoff + 1);

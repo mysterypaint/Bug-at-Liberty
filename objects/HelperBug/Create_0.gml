@@ -2,7 +2,7 @@
 spr_index = sprite_index;
 img_index = 0;
 img_index_offset = 0;
-img_speed = 0.2;
+img_speed = 0.5;
 ani_max_frames = 2;
 img_xscale = 1;
 img_yscale = 1;
@@ -22,3 +22,7 @@ bullet_count_max = 3;
 bullet_count_two = 0;
 bullet_count_two_max = 4;
 bullet_type = 0;
+butterfly_cooldown_timer_reset = Ship.butterfly_cooldown_timer_reset;
+butterfly_cooldown_timer = 0;
+
+bug_type = -1;

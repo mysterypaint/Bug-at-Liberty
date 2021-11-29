@@ -6,8 +6,10 @@ move_y = max(keyboard_check(key_down), keyboard_check(key_down_alt), 0) - max(ke
 
 
 key_shoot_pressed = max(keyboard_check(key_shoot), keyboard_check(key_shoot_alt), 0);
-key_speedchange_pressed = max(keyboard_check_pressed(key_speedchange), keyboard_check_pressed(key_speedchange_alt), 0);
+key_weapon_change_forward_pressed = max(keyboard_check_pressed(key_weapon_change_forward), keyboard_check_pressed(key_weapon_change_forward_alt), 0);
+key_weapon_change_backward_pressed = max(keyboard_check_pressed(key_weapon_change_backward), keyboard_check_pressed(key_weapon_change_backward_alt), 0);
 key_confirm_pressed = max(keyboard_check_pressed(key_confirm), keyboard_check_pressed(key_confirm_alt), 0);
+key_cancel_pressed = max(keyboard_check_pressed(key_cancel), keyboard_check_pressed(key_cancel_alt), 0);
 
 if (!keyboard_check(vk_alt))
 	key_pause_pressed = max(keyboard_check(key_pause), keyboard_check(key_pause_alt), 0);
@@ -21,3 +23,6 @@ if (global_debug) {
 
 if (keyboard_check_pressed(vk_escape))
 	game_end();
+
+// Step the BGM, if defined
+bgm_step(curr_bgm);

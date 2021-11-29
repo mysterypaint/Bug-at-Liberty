@@ -17,12 +17,12 @@ switch (state) {
 		}
 		
 		if (inv_frames <= 0) {
-			var _inst = instance_place(x, y, PlayerBullet);
+			var _inst = instance_place(x, y, ParentPlayerBullet);
 			if (_inst != noone) {
 				if (hp > 0)
 					hp--;
 				else {
-					hp = -2;
+					hp = -99999;
 					
 					state = EnemyStates.FALLING;
 				}
@@ -71,6 +71,10 @@ switch (state) {
 			img_speed = 0;
 		}
 		if (inv_frames <= 0) {
+			// 1 in 3 chance to spawn a player powerup when the wasp nest is destroyed
+			var _dice = irandom(3 - 1);
+			if (_dice == 0)
+				instance_create_depth(x, y, depth, PlayerPowerup);
 			instance_destroy();
 		} else {
 			if (inv_frames % blink_rate == 0)

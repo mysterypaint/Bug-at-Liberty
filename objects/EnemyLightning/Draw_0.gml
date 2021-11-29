@@ -28,6 +28,8 @@ if (time_alive > active_frame) {
 		var _ts = Game.TILE_SIZE;
 		var _x = camera_get_view_x(view_camera[0]);
 		var _y = camera_get_view_y(view_camera[0]);
+		draw_set_alpha(flash_alpha);
 		draw_rectangle_color(_x - _ts, _y - _ts, _x + Game.base_res_width + _ts, _y + Game.base_res_height + _ts, _col, _col, _col, _col, false);
+		draw_set_alpha(1);
 	}
 }

@@ -54,14 +54,16 @@ with (Camera) {
 		var _this_bullet = instance_find(PlayerBullet, _i);
 		//var _this_bullet = _player_depth + 1;
 		with(_this_bullet) {
-			if (bullet_type != BulletTypes.STAG_BEETLE) {
-				hsp += _cam.move_x * Game.dt;
-				vsp += _cam.move_y * Game.dt;
+			if (bullet_type != BulletTypes.DRAGONFLY) {
+				hsp_carry += _cam.move_x * Game.dt;
 			} else {
 				if (!extra_bullet)
-					hsp += _cam.move_x * Game.dt;
-				vsp += _cam.move_y * Game.dt;
+					hsp_carry += _cam.move_x * Game.dt;
+				else {
+					hsp_carry -= _cam.move_x * Game.dt;
+				}
 			}
+			vsp_carry += _cam.move_y * Game.dt;
 		}
 	}
 	
@@ -146,11 +148,13 @@ if (tile_place_meeting(x, y + vsp, 1) || place_meeting(x, y + vsp, ParentSolid) 
 
 
 // Don't let player move beyond camera bounds vertically
-if (y + vsp <= Camera.y) {
-	y = Camera.y;
+var _cam_y_top_bounds = Camera.y - 15;
+var _cam_y_bottom_bounds = Camera.y + Game.base_res_height - Game.TILE_SIZE - 8;
+if (y + vsp <= _cam_y_top_bounds) {
+	y = _cam_y_top_bounds;
 	vsp = 0;
-} else if (y + vsp >= Camera.y + Game.base_res_height - Game.TILE_SIZE - 8) {
-	y = Camera.y + Game.base_res_height - Game.TILE_SIZE - 8;
+} else if (y + vsp >= _cam_y_bottom_bounds) {
+	y = _cam_y_bottom_bounds;
 	vsp = 0;
 	y = round(y);
 } else
@@ -194,19 +198,37 @@ if (bullet_count_two < 0)
 bullet_shooting();
 
 
-if (Game.key_speedchange_pressed) {
-	bullet_type++;
-	
-	if (bullet_type >= Fighters.MAX)
+if (Game.key_weapon_change_forward_pressed) {
+	if (bullet_type + 1 <= Fighters.MAX - 1)
+		bullet_type++;
+	else
 		bullet_type = 0;
 	
-	bullet_count_max = 4;
-	bullet_count_two_max = 4;
-	
-	if (bullet_type == BulletTypes.DRAGONFLY || bullet_type == BulletTypes.STAG_BEETLE) {
-		bullet_count_max = 1;
-		bullet_count_two_max = 1;
+	while (Game.enabled_weapons[bullet_type] == false && !Game.debug) {
+		
+		bullet_type++;
+		
+		if (bullet_type > Fighters.MAX - 1)
+			bullet_type = 0;
 	}
+	
+	update_player_bullet_max(bullet_type);
+} else if (Game.key_weapon_change_backward_pressed) {
+
+	if (bullet_type - 1 >= 0)
+		bullet_type--;
+	else
+		bullet_type = Fighters.MAX - 1;
+	
+	while (Game.enabled_weapons[bullet_type] == false && !Game.debug) {
+		
+		bullet_type--;
+		
+		if (bullet_type < 0)
+			bullet_type = Fighters.MAX - 1;
+	}
+	
+	update_player_bullet_max(bullet_type);
 }
 
 /*
