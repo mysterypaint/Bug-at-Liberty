@@ -17,8 +17,8 @@
   "width": 144,
   "height": 78,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "Entities",
+    "path": "texturegroups/Entities",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -97,8 +97,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Tier2",
-    "path": "folders/Sprites/TODO/Tier2.yy",
+    "name": "Player",
+    "path": "folders/Sprites/Player.yy",
   },
   "resourceVersion": "1.0",
   "name": "sprBulletFireflyExplosion",

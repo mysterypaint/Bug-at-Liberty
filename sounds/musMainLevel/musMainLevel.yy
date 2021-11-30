@@ -1,4 +1,5 @@
 {
+  "conversionMode": 0,
   "compression": 0,
   "volume": 1.0,
   "preload": false,
@@ -7,8 +8,8 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "audiogroup2",
-    "path": "audiogroups/audiogroup2",
+    "name": "AudioGroupBGM",
+    "path": "audiogroups/AudioGroupBGM",
   },
   "soundFile": "musMainLevel.ogg",
   "duration": 134.962128,

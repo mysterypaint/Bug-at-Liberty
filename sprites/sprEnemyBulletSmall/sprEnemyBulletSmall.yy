@@ -17,8 +17,8 @@
   "width": 6,
   "height": 6,
   "textureGroupId": {
-    "name": "texgroup3",
-    "path": "texturegroups/texgroup3",
+    "name": "Entities",
+    "path": "texturegroups/Entities",
   },
   "swatchColours": null,
   "gridX": 0,

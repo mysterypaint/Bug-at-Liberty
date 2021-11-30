@@ -2,10 +2,10 @@
 switch(state) {
 	case GameStates.INIT:
 		state = GameStates.TITLE;
-		audio_group_set_gain(audiogroup1, 1, 1); // SFX
-		audio_group_set_gain(audiogroup2, 0.8, 1); // BGM
-		audio_group_load(audiogroup1);
-		audio_group_load(audiogroup2);
+		audio_group_set_gain(AudioGroupSFX, 1, 1); // SFX
+		audio_group_set_gain(AudioGroupBGM, 0.8, 1); // BGM
+		audio_group_load(AudioGroupSFX);
+		audio_group_load(AudioGroupBGM);
 		break;
 	case GameStates.TITLE:
 		if (key_pause_pressed && !title_screen_show_controls) {

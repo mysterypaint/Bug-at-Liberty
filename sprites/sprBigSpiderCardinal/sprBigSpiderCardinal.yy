@@ -17,8 +17,8 @@
   "width": 67,
   "height": 64,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "Entities",
+    "path": "texturegroups/Entities",
   },
   "swatchColours": null,
   "gridX": 0,

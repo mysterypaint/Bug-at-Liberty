@@ -41,7 +41,7 @@ switch(Game.state) {
 	case GameStates.GAMEOVER:
 		//draw_set_color(c_white);
 		//draw_text(0, 0, "gmae over lol\n\nu fukken died!");
-		draw_sprite(sprGameOver, 0, 0, 0);
+		draw_sprite(sprGameOverScreen, 0, 0, 0);
 		
 		if (Game.tick % Game.TITLE_BLINK_SPEED == 0)
 			Game.show_titlescreen_prompt = !Game.show_titlescreen_prompt;

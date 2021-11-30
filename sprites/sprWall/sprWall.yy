@@ -17,8 +17,8 @@
   "width": 16,
   "height": 16,
   "textureGroupId": {
-    "name": "texgroup1",
-    "path": "texturegroups/texgroup1",
+    "name": "Tilesets",
+    "path": "texturegroups/Tilesets",
   },
   "swatchColours": null,
   "gridX": 0,

@@ -17,8 +17,8 @@
   "width": 7,
   "height": 20,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "Entities",
+    "path": "texturegroups/Entities",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -81,8 +81,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "TODO",
-    "path": "folders/Sprites/TODO.yy",
+    "name": "Human",
+    "path": "folders/Sprites/Enemies/Human.yy",
   },
   "resourceVersion": "1.0",
   "name": "sprWarning",

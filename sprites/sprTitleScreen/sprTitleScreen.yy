@@ -17,8 +17,8 @@
   "width": 320,
   "height": 180,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "Splashscreens",
+    "path": "texturegroups/Splashscreens",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -69,8 +69,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "Tier2",
-    "path": "folders/Sprites/TODO/Tier2.yy",
+    "name": "Screens",
+    "path": "folders/Sprites/Screens.yy",
   },
   "resourceVersion": "1.0",
   "name": "sprTitleScreen",

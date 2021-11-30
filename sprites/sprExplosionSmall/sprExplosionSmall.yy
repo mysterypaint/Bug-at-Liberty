@@ -17,8 +17,8 @@
   "width": 18,
   "height": 18,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "Entities",
+    "path": "texturegroups/Entities",
   },
   "swatchColours": null,
   "gridX": 0,
@@ -81,8 +81,8 @@
   ],
   "nineSlice": null,
   "parent": {
-    "name": "TODO",
-    "path": "folders/Sprites/TODO.yy",
+    "name": "Enemies",
+    "path": "folders/Sprites/Enemies.yy",
   },
   "resourceVersion": "1.0",
   "name": "sprExplosionSmall",
