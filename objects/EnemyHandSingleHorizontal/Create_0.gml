@@ -18,7 +18,11 @@ hp = -99999; // Infinite HP
 padding = 2;
 
 punching_state = 0; // 1 -> Punch moves to the right; -1 -> Punch moves to the left
-punching_speed = 3;
+punching_speed = 10;
+
+caution_img_index = 0;
+caution_ani_max_frames = 4;
+caution_img_speed = 0.2;
 
 // Create the arm for this hand
 mask_index = -1;
@@ -34,7 +38,7 @@ if (spr_index == sprHandHorizontal1) {
 	hand_width = 8;
 }
 arm_width = 320 - hand_width;
-x_offset = 0;//-hand_width;//-Game.base_res_width - padding;
+x_offset = hand_width;//-Game.base_res_width - padding;
 body_extension.spr_index = body_extension.sprite_index;
 body_extension.mask_index = body_extension.spr_index;
 //body_extension.x = x - arm_width;

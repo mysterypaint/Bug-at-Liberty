@@ -5,8 +5,8 @@ function update_player_bullet_max_internal(_bullet_type) {
 	bullet_count_two_max = 4;
 	
 	if (_bullet_type == BulletTypes.DRAGONFLY || _bullet_type == BulletTypes.STAG_BEETLE) {
-		bullet_count_max = 1;
-		bullet_count_two_max = 1;
+		bullet_count_max = 2;
+		bullet_count_two_max = 2;
 	}
 	
 	if (_bullet_type == BulletTypes.BUTTERFLY) {

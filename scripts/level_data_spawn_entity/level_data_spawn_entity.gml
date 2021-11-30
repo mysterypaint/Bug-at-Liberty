@@ -174,6 +174,22 @@ function level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation,
 			break;
 		case "EnemyCockroach":
 			_obj_id = instance_create_depth(_x + 8, _y + 16, 0, EnemyCockroach);
+			
+			if (!is_undefined(_properties)) {
+				var _num_props = ds_list_size(_properties);
+				for (var _i = 0; _i < _num_props; _i++) {
+					var _this_property = _properties[| _i];
+					var _prop_name = _this_property[? "name"];
+					var _prop_type = _this_property[? "type"];
+					var _prop_value = _this_property[? "value"];
+					
+					switch(_prop_name) {
+						case "initially_flying":
+							initially_flying = _prop_value;
+							break;
+					}
+				}
+			}
 			break;
 	}
 	//_obj_id.visible = _visible;

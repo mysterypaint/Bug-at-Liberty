@@ -36,6 +36,7 @@ switch (state) {
 				y++;
 			}
 			vsp = bounce_speed;
+			sfx_play(sfxEnemyDungBeetleBallBounce);
 		}
 		
 		x += hsp * Game.dt;

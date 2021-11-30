@@ -9,6 +9,7 @@ enum EnemyStates {
 	IDLE,
 	MOVING,
 	JUMPING,
+	FLYING,
 	ATTACKING,
 	DYING,
 	FALLING,
@@ -20,6 +21,7 @@ cam_bounds_y_min = Game.TILE_SIZE * 4;
 cam_bounds_x_max = Game.base_res_width + Game.TILE_SIZE * 4;
 cam_bounds_y_max = Game.base_res_height + Game.TILE_SIZE * 4;
 
+silent_death = false;
 state = EnemyStates.UNLOADED;
 can_hurt_player = false;
 has_small_explosion = true;

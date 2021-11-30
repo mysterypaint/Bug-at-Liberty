@@ -42,6 +42,8 @@ switch (state) {
 					hsp = sign(hsp) * abs(move_speed) / 2;
 					_ball.hsp = hsp;
 					_ball.img_speed = img_speed / 2;
+					if (!audio_is_playing(sfxEnemyDungBeetleRollingBall) && Game.state != GameStates.PAUSED)
+						sfx_play(sfxEnemyDungBeetleRollingBall);
 				}
 			}
 			

@@ -5,12 +5,12 @@ function shoot_at_player(_type) {
 
 	_direction += irandom_range(-10, 10);
 	if (_type == EnemyBulletTypes.SMALL) { // Small, slow bullet
-		var _new_bullet = instance_create_depth(x, y, depth, EnemyBulletSmall);
+		var _new_bullet = instance_create_depth(x + shoot_x_off, y + shoot_y_off, depth, EnemyBulletSmall);
 		_new_bullet.direction = _direction;
 		_new_bullet.spd = 0.8;
 	}
 	else if (_type == EnemyBulletTypes.LARGE) { // Large, fast bullet
-		var _new_bullet = instance_create_depth(x, y, depth, EnemyBulletLarge);
+		var _new_bullet = instance_create_depth(x + shoot_x_off, y + shoot_y_off, depth, EnemyBulletLarge);
 		_new_bullet.direction = _direction;
 		_new_bullet.spd = 1.7;
 	}

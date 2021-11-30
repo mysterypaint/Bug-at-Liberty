@@ -93,6 +93,8 @@ switch (state) {
 				_this_helper.bug_type = _bug_type;
 			}
 			//instance_destroy();
+			
+			sfx_play(sfxHelperBugRecruit);
 			state = EnemyStates.DYING;
 		}
 		break;

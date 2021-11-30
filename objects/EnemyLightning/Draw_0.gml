@@ -1,6 +1,10 @@
 /// @description Insert description here
 if (time_alive > active_frame) {
 	white_screen = false;
+	if (!played_sfx) {
+		sfx_play(sfxEnemyPrayingMantisLightningStrike);
+		played_sfx = true;
+	}
 
 	if (time_alive > active_frame + 15)
 		instance_destroy();

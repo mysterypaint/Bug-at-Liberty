@@ -3,6 +3,14 @@
 function bgm_step(_bgm) {
 	with (Game) {
 		if (curr_bgm > 0) {
+			
+			if (!audio_is_playing(_bgm)) {
+				curr_bgm = undefined;
+				bgm_intro_length = -1;
+				bgm_loop_length = -1;
+				bgm_total_length = -1;
+				exit;
+			}
 			/*
 			var _pos;
 			

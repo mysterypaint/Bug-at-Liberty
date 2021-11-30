@@ -17,7 +17,12 @@ if (other.object_index == BulletFireflyExplosion) {
 if (state != EnemyStates.UNLOADED) {
 	if (hp > -99999) {
 		hp -= other.atk_stat;
+		if (hp > 0)
+			sfx_play(sfxGenericEnemyDamaged);
+		
 		//show_debug_message("Enemy hurt by " + string(other.atk_stat) + " points. HP left: " + string(hp));
+	} else {
+		sfx_play(sfxGenericEnemyBlockBullet);
 	}
 }
 

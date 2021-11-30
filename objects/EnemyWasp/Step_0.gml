@@ -16,6 +16,7 @@ switch (state) {
 			move_angle = point_direction(x, y, Ship.x, Ship.y);
 			hsp = lengthdir_x(move_speed, move_angle);
 			vsp = lengthdir_y(move_speed, move_angle);
+			sfx_play(sfxWaspFlying);
 			
 			state = EnemyStates.MOVING;
 			img_index_offset = 2;

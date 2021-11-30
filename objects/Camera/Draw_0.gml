@@ -48,9 +48,10 @@ switch(Game.state) {
 
 		if (Game.show_titlescreen_prompt) {
 			draw_set_color(c_orange);
-			draw_text(3 * _hts + 1, 13 * _hts + 1, "Press Pause to return to the Title Screen");
+			var _str = "Press Pause to return to the Title Screen";
+			draw_text(6 * _hts + 1, 13 * _hts + 1, _str);
 			draw_set_color(c_yellow);
-			draw_text(3 * _hts, 13 * _hts, "Press Pause to return to the Title Screen");
+			draw_text(6 * _hts, 13 * _hts, _str);
 		}
 		if (instance_exists(FadeEffect)) {
 			with (FadeEffect) {
@@ -193,5 +194,11 @@ switch(Game.state) {
 
 
 if (Game.debug) {
+	draw_set_color(c_white);
 	draw_text(x + Game.base_res_width - (8 * 8), y, "fps: " + string(fps));
+	if (Game.mute_bgm) {
+		draw_set_color(c_red);
+		draw_text(x + Game.base_res_width - (8 * 8), y + 8, "BGM MUTED");
+		draw_set_color(c_white);
+	}
 }

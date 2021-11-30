@@ -7,6 +7,7 @@ switch (state) {
 			if (Game.checkpoint < x && !Ship.dead) {
 				Game.checkpoint = x;
 				Camera.checkpoint_display_timer = Camera.checkpoint_display_timer_reset;
+				sfx_play(sfxCheckpointReached);
 			}
 			instance_destroy();
 		}

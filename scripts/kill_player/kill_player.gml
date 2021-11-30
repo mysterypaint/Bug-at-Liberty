@@ -8,8 +8,7 @@ function kill_player() {
 		//audio_stop_sound(Game.curr_bgm);
 		
 		instance_create_depth(x + 8, y + 13, depth + 1, PlayerExplosion);
-		var _explosion_sfx = choose(sfxPlayerExplosion, sfxPlayerExplosion2);
-		sfx_play(_explosion_sfx, 0, false);
+		sfx_play(sfxPlayerExplosion);
 	
 		with (Camera) {
 			prev_move_x = move_x;

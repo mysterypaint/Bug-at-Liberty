@@ -50,7 +50,7 @@ switch(bullet_type) {
 		break;
 }
 
-if (tile_place_meeting(x, y, 1) || place_meeting(x, y, ParentSolid) || x >= Camera.x + Game.base_res_width + Game.TILE_SIZE  || x <= Camera.x) {
+if (tile_place_meeting(x, y, 1) || place_meeting(x, y, ParentSolid) || x >= Camera.x + Game.base_res_width + Game.TILE_SIZE  || x <= Camera.x - Game.TILE_SIZE * 2) {
 	instance_destroy();
 }
 

@@ -46,7 +46,7 @@ function bullet_shooting(){
 					var _ray = lengthdir_y(_spd, _new_angle);
 					_bullet2.hsp = _rax;
 					_bullet2.vsp = _ray;
-					sfx_play(_bullet_sfx, 0, false);
+					sfx_play(_bullet_sfx);
 						
 					bullet_count++;
 					butterfly_cooldown_timer = butterfly_cooldown_timer_reset;
@@ -55,28 +55,32 @@ function bullet_shooting(){
 			case BulletTypes.DRAGONFLY:
 				if (_bullet != noone) {
 					_bullet.atk_stat = 0.2;
+					_bullet.hsp = 2; //4 by default
 				}
 				if (bullet_count_two < bullet_count_two_max) {
 					var _bullet2 = instance_create_depth(x + shoot_x_off, y + shoot_y_off, depth, PlayerBullet);
 					_bullet2.bullet_type = _ship_bullet_type;
 					_bullet2.parent_id = id;
+					_bullet2.hsp = 2; //4 by default
 					_bullet2.depth = depth - 1;
 					_bullet2.sprite_index = _ship.bullet_sprites[_ship_bullet_type];
 					_bullet2.spr_index = _bullet2.sprite_index;
 					_bullet2.hsp = -3;
 					_bullet2.extra_bullet = true; // This is a second bullet, so don't mess with the bullet refresh counter
 					_bullet2.atk_stat = 0.4;
-					sfx_play(_bullet_sfx, 0, false);
+					sfx_play(_bullet_sfx);
 					bullet_count_two++;
 				}
 				break;
 			case BulletTypes.FIREFLY:
 				if (_bullet != noone) {
 					_bullet.atk_stat = 0.1;
+					_bullet.gravity_enabled = true;
 				}
 				if (bullet_count_two < bullet_count_two_max) {
 					var _bullet2 = instance_create_depth(x + shoot_x_off, y + shoot_y_off, depth, PlayerBullet);
 					_bullet2.gravity_enabled = true;
+					_bullet2.grav = 0.8;
 					_bullet2.bullet_type = _ship_bullet_type;
 					_bullet2.parent_id = id;
 					_bullet2.atk_stat = 0.2;
@@ -84,7 +88,7 @@ function bullet_shooting(){
 					_bullet2.sprite_index = _ship.bullet_sprites[_ship_bullet_type];
 					_bullet2.spr_index = _bullet2.sprite_index;
 					_bullet2.extra_bullet = true; // This is a second bullet, so don't mess with the bullet refresh counter
-					sfx_play(_bullet_sfx, 0, false);
+					sfx_play(_bullet_sfx);
 					bullet_count_two++;
 				}
 				break;

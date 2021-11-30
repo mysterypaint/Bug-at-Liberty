@@ -8,8 +8,8 @@
   "type": 0,
   "bitDepth": 1,
   "audioGroupId": {
-    "name": "AudioGroupSFX",
-    "path": "audiogroups/AudioGroupSFX",
+    "name": "audiogroup_default",
+    "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "sfxBullet2.wav",
   "duration": 0.374989,

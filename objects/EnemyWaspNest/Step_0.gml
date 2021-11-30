@@ -25,6 +25,7 @@ switch (state) {
 					hp = -99999;
 					
 					state = EnemyStates.FALLING;
+					sfx_play(sfxWaspNestFalling);
 				}
 				with (other)
 					instance_destroy(_inst);
@@ -51,6 +52,7 @@ switch (state) {
 				y += sign(vsp);
 			}
 			state = EnemyStates.DYING;
+			sfx_play(sfxWaspNestExplosion);
 			inv_frames = inv_frames_reset;
 			img_index_offset = 1;
 			img_speed = 0.2;

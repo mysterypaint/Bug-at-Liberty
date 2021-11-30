@@ -27,13 +27,13 @@ img_speed = 0;
 
 extra_bullet = false;
 
-bullet_butterfly_life_timer = 6;
+bullet_butterfly_life_timer = 9;
 bullet_butterfly_speed = 4;
 bullet_bee_vertical_timer = 60;
 bullet_bee_missile_hsp = 0;
 bullet_bee_missile_hsp_rate = 0.4;
 death_time = -1;
-grav = 0.2;
-grav_max = 9.81;
+grav = 0.08;
+grav_max = 7;
 gravity_enabled = false;
 delay_timer = 0;

@@ -12,7 +12,7 @@ function player_shoot_primary_bullet(_ship_bullet_type) {
 		_bullet.spr_index = _bullet.sprite_index;
 			
 		var _bullet_sfx = Game.bullet_sfx[_ship_bullet_type];
-		sfx_play(_bullet_sfx, 0, false);
+		sfx_play(_bullet_sfx);
 		bullet_count++;
 	}
 	

@@ -23,6 +23,8 @@ switch (state) {
 
 			hsp = lengthdir_x(move_speed, move_angle);
 			vsp = lengthdir_y(move_speed, move_angle);
+			
+			sfx_play(sfxSpiderSmallRunning);
 		}
 		
 		if (time_alive % shoot_frequency == 0 && Game.dt > 0)

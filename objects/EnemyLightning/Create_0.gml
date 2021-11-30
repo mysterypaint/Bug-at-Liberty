@@ -32,6 +32,7 @@ active_frame = 50;
 white_screen = false;
 flash_rate = 5;
 flash_alpha = 0.6;
+played_sfx = false;
 
 hsp = 0;
 vsp = 0;

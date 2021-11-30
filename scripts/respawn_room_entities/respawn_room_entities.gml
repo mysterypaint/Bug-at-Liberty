@@ -31,16 +31,22 @@ function respawn_room_entities(){
 			var _this_instance = _lvl_obj.instances[| _i];
 			if (is_undefined(_this_instance))
 				continue;
-			if (instance_exists(_this_instance))
+			if (instance_exists(_this_instance)) {
+				_this_instance.silent_death = true; // make sure no sfx plays on death
 				instance_destroy(_this_instance);
+			}
 		}
 	
 		ds_list_destroy(_lvl_obj.instances);
 	}
 
 	// Destroy any remaining enemies in the room
-	if (instance_exists(ParentEnemy))
-		instance_destroy(ParentEnemy);
+	if (instance_exists(ParentEnemy)) {
+		with (other) {
+			silent_death = true;
+			instance_destroy();
+		}
+	}
 
 	// Now that all the entities have been destroyed, spawn some fresh ones into the room
 

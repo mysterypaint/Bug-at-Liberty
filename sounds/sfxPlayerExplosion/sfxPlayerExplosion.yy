@@ -12,7 +12,7 @@
     "path": "audiogroups/AudioGroupSFX",
   },
   "soundFile": "sfxPlayerExplosion.wav",
-  "duration": 4.406236,
+  "duration": 3.125229,
   "parent": {
     "name": "SFX",
     "path": "folders/Sounds/SFX.yy",

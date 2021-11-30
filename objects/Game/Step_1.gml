@@ -21,6 +21,18 @@ if (global_debug) {
 		debug = !debug;
 }
 
+if (debug) {
+	if (keyboard_check_pressed(ord("M"))) {
+		mute_bgm = !mute_bgm;
+		
+		if (mute_bgm) {
+			audio_group_set_gain(AudioGroupBGM, 0, 0);
+		} else
+			audio_group_set_gain(AudioGroupBGM, 0.8, 0);
+	}
+	
+}
+
 if (keyboard_check_pressed(vk_escape))
 	game_end();
 

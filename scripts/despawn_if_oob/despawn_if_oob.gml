@@ -6,6 +6,7 @@ function despawn_if_oob(){
 		(y < Camera.y - cam_bounds_y_min) ||
 		(x > Camera.x + cam_bounds_x_max) ||
 		(y > Camera.y + cam_bounds_y_max) ) {
+			silent_death = true;
 			instance_destroy();
 	}
 }

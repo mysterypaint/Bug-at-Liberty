@@ -3,7 +3,7 @@ if (dead)
 	exit;
 
 if (Game.debug) {
-	audio_play_sound(sfxPlayerHit, 0, false);
+	sfx_play(sfxDebugPlayerHit);
 	//other.HP--;
 	instance_destroy(other);
 } else {

@@ -18,8 +18,8 @@ bullet_sfx[BulletTypes.DRAGONFLY] = sfxBullet2;
 bullet_sfx[BulletTypes.BUTTERFLY] = sfxBullet3;
 bullet_sfx[BulletTypes.BEE] = sfxBullet4;
 bullet_sfx[BulletTypes.FIREFLY] = sfxBullet5;
-bullet_sfx[BulletTypes.STAG_BEETLE] = sfxBullet6;
-bullet_sfx[BulletTypes.MAX] = sfxBullet7;
+//bullet_sfx[BulletTypes.STAG_BEETLE] = sfxBullet6;
+//bullet_sfx[BulletTypes.MAX] = sfxBullet7;
 
 state = GameStates.INIT;
 prev_state = state;
@@ -28,8 +28,12 @@ bgm = undefined;
 bgm_intro_length = 0.0;
 bgm_loop_length = 0.0;
 bgm_total_length = 0.0;
+mute_bgm = false;
 
 tick = 0;
+begin_game_timer = -1;
+begin_game_timer_reset = 80;
+
 pause_timer = 0;
 pause_timer_reset = 10;
 title_screen_show_controls = false;
@@ -39,7 +43,7 @@ base_res_height = 180;
 zoom_size = 4;
 zoom_size_max = floor(display_get_width() / base_res_width);
 
-player_lives = 3;
+player_lives = 1;
 checkpoint = 0; // x-pos determining where to move the camera and player upon a player death
 
 key_up = vk_up;
