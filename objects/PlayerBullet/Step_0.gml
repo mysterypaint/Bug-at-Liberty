@@ -50,11 +50,19 @@ switch(bullet_type) {
 		break;
 }
 
-if (tile_place_meeting(x, y, 1) || place_meeting(x, y, ParentSolid) || x >= Camera.x + Game.base_res_width + Game.TILE_SIZE  || x <= Camera.x - Game.TILE_SIZE * 2) {
+if (place_meeting(x, y, ParentSolid) || x >= Camera.x + Game.base_res_width + Game.TILE_SIZE  || x <= Camera.x - Game.TILE_SIZE * 2) {
+	silent_death = true; // Don't create explosions if the bullet went too far off-screen
 	instance_destroy();
 }
 
-if (death_time > 0)
+if (tile_place_meeting(x, y, 1))
+	instance_destroy();
+
+if (death_time > 0) {
 	death_time -= Game.dt;
-else if (death_time == 0)
+	if (atk_stat > 0.1)
+		atk_stat -= 0.03;
+	else
+		atk_stat = 0.1;
+} else if (death_time == 0)
 	instance_destroy();

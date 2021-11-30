@@ -6,6 +6,12 @@ vsp = 0;
 
 move_speed = 2;
 
+curr_hp = 6;
+max_hp = 6;
+inv_frames_timer_reset = 90;
+inv_frames_timer = 0;
+inv_blink_rate = 4;
+
 dead = false;
 death_timer = -1;
 death_timer_reset = 180;//370;
@@ -31,6 +37,7 @@ current_fighter = Fighters.STARTING;
 
 spr_x_off = sprite_get_xoffset(sprite_index);
 spr_y_off = sprite_get_yoffset(sprite_index);
+right_camera_wall_padding = 30;
 
 shoot_x_off = 12;
 shoot_y_off = 14;

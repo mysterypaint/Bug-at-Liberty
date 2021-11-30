@@ -1,5 +1,5 @@
 /// @description Insert description here
-if (other.object_index == BulletFireflyExplosion) {
+if (other.object_index == ParentPlayerWeaponExplosion) {
 	var _ffexplosion = other;
 	var _already_hurt = false;
 	var _enemies_hurt = ds_list_size(_ffexplosion.hurt_enemies);
@@ -26,7 +26,7 @@ if (state != EnemyStates.UNLOADED) {
 	}
 }
 
-if (other.object_index == BulletFireflyExplosion) {
+if (other.object_index == ParentPlayerWeaponExplosion) {
 	ds_list_add(other.hurt_enemies, id);
 }
 

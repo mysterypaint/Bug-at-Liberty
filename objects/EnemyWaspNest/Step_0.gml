@@ -16,7 +16,7 @@ switch (state) {
 			}
 		}
 		
-		if (inv_frames <= 0) {
+		if (inv_frames_timer <= 0) {
 			var _inst = instance_place(x, y, ParentPlayerBullet);
 			if (_inst != noone) {
 				if (hp > 0)
@@ -30,15 +30,15 @@ switch (state) {
 				with (other)
 					instance_destroy(_inst);
 					
-				inv_frames = inv_frames_reset;
+				inv_frames_timer = inv_frames_timer_reset;
 			}
 			
 			draw_me = true;
 		} else {
-			if (inv_frames % blink_rate == 0)
+			if (inv_frames_timer % blink_rate == 0)
 				draw_me = !draw_me;
 			
-			inv_frames -= Game.dt;
+			inv_frames_timer -= Game.dt;
 		}
 		break;
 	case EnemyStates.FALLING:
@@ -53,7 +53,7 @@ switch (state) {
 			}
 			state = EnemyStates.DYING;
 			sfx_play(sfxWaspNestExplosion);
-			inv_frames = inv_frames_reset;
+			inv_frames_timer = inv_frames_timer_reset;
 			img_index_offset = 1;
 			img_speed = 0.2;
 			vsp = 0;
@@ -72,17 +72,17 @@ switch (state) {
 			img_index = ani_max_frames;
 			img_speed = 0;
 		}
-		if (inv_frames <= 0) {
+		if (inv_frames_timer <= 0) {
 			// 1 in 3 chance to spawn a player powerup when the wasp nest is destroyed
-			var _dice = irandom(3 - 1);
-			if (_dice == 0)
+			var _dice = irandom(0); //3 - 1
+			if (_dice == 0 && Game.enabled_weapons[Fighters.BEEMISSILE] == false)
 				instance_create_depth(x, y, depth, PlayerPowerup);
 			instance_destroy();
 		} else {
-			if (inv_frames % blink_rate == 0)
+			if (inv_frames_timer % blink_rate == 0)
 				draw_me = !draw_me;
 				
-			inv_frames -= Game.dt;
+			inv_frames_timer -= Game.dt;
 		}
 		break;
 }

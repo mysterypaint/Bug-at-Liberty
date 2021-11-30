@@ -14,10 +14,39 @@ switch(state) {
 			sfx_play(sfxExtraLife);
 		}
 		
+		if (key_weapon_change_forward_pressed)
+			game_difficulty++
+		
+		if (game_difficulty > GameDifficulties.MAX - 1)
+			game_difficulty = 0;
+		
 		if (begin_game_timer > 0) {
 			begin_game_timer -= Game.dt;
 		} else if (begin_game_timer == 0) {
 			playerShip = instance_create_depth(120, 32, 0, Ship);
+			
+			switch(game_difficulty) {
+				case GameDifficulties.REGULAR:
+					playerShip.max_hp = 6;
+					playerShip.curr_hp = playerShip.max_hp;
+					reset_helpers_on_death = false;
+					obtain_caged_helpers = true;
+					break;
+				case GameDifficulties.ARCADE:
+					playerShip.max_hp = -1;
+					playerShip.curr_hp = -1;
+					player_lives = 5;
+					reset_helpers_on_death = true;
+					obtain_caged_helpers = true;
+					break;
+				case GameDifficulties.NIGHTMARE:
+					playerShip.max_hp = -1;
+					playerShip.curr_hp = -1;
+					player_lives = 3;
+					reset_helpers_on_death = true;
+					obtain_caged_helpers = false;
+					break;
+			}
 			//room_goto(rm_lv1);
 			level_data_obj = read_json("testmap0.json");
 			

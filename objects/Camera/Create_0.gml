@@ -2,12 +2,18 @@
 // You can write your code in this editor
 ds_draw_object_depth_sort = ds_grid_create(2, 1);
 
-weapon_hud_xoff = 12;
-weapon_hud_yoff = 5;
+hp_hud_xoff = 11;
+hp_hud_yoff = 2;
+hp_hud_width = 6;
+hud_sleeping_img_index = 0;
+hud_sleeping_img_speed = 0.035;
+
+weapon_hud_xoff = 130;
+weapon_hud_yoff = 2;
 weapon_box_width = sprite_get_width(sprHUDWeapons);
 
-lives_hud_xoff = 12;
-lives_hud_yoff = 19;
+lives_hud_xoff = 13;
+lives_hud_yoff = 17;
 
 hud_alpha = 0.7;
 

@@ -37,7 +37,7 @@ function level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation,
 		case "HelperBugCapsulePrison":
 			var _num_cages = instance_number(HelperBugCapsulePrison);
 			if (_num_cages < 3) {
-				_obj_id = instance_create_depth(_x + 10, _y + 16, 0, HelperBugCapsulePrison);
+				_obj_id = instance_create_depth(_x + 12, _y + 17, 0, HelperBugCapsulePrison);
 			
 				with (_obj_id) {
 					if (!is_undefined(_properties)) {

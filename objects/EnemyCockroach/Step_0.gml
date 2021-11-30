@@ -12,6 +12,7 @@ switch (state) {
 				spr_index = sprCockroachIdle;
 				img_speed = 0.2;
 				sprite_index = spr_index;
+				//mask_index = sprite_index;
 				ani_max_frames = sprite_get_number(sprite_index);
 				img_xscale = choose(1, -1);
 				img_yscale = 1;
@@ -20,6 +21,7 @@ switch (state) {
 				spr_index = sprCockroachFlying;
 				img_speed = 0.8;
 				sprite_index = spr_index;
+				//mask_index = sprite_index;
 				ani_max_frames = sprite_get_number(sprite_index);
 				direction = choose(45, 135, 225, 225, 315, 315);
 				target_hsp = lengthdir_x(wander_speed, direction);
@@ -74,6 +76,7 @@ switch (state) {
 				spr_index = sprCockroachIdle;
 				img_speed = 0.2;
 				sprite_index = spr_index;
+				//mask_index = sprite_index;
 				ani_max_frames = sprite_get_number(sprite_index);
 				
 				shoot_timer_next = irandom(shoot_timer_max_val);
@@ -90,8 +93,10 @@ switch (state) {
 				target_vsp = 0;
 				y--;
 			} else {
-				vsp *= -1;
-				img_yscale *= -1;
+				if (Game.dt > 0) {
+					vsp *= -1;
+					img_yscale *= -1;
+				}
 			}
 		}
 		y += vsp * Game.dt;
@@ -109,6 +114,7 @@ switch (state) {
 			spr_index = sprCockroachFlying;
 			img_speed = 0.8;
 			sprite_index = spr_index;
+			//mask_index = sprite_index;
 			ani_max_frames = sprite_get_number(sprite_index);
 			
 			shoot_timer_next = irandom(shoot_timer_max_val);
@@ -143,7 +149,53 @@ switch (state) {
 		break;
 }
 
-if (state != EnemyStates.FLYING)
+
+if (state == EnemyStates.FLYING) {
+	var _colliding_bullet = collision_rectangle(
+				x - spr_flying_x_origin,
+				y - spr_flying_y_origin,
+				x + spr_flying_x_origin,
+				y + spr_flying_x_origin,
+				ParentPlayerBullet,
+				false,
+				false);
+
+	if (_colliding_bullet != noone) {
+		if (_colliding_bullet.object_index == ParentPlayerWeaponExplosion) {
+			var _ffexplosion = other;
+			var _already_hurt = false;
+			var _enemies_hurt = ds_list_size(_ffexplosion.hurt_enemies);
+	
+			for (var _i = 0; _i < _enemies_hurt; _i++) {
+				var _this_enemy = _enemies_hurt[| _i];
+				if (_this_enemy == id)
+					_already_hurt = true;
+			}
+	
+			if (_already_hurt)
+				exit;
+		}
+	
+		if (state != EnemyStates.UNLOADED) {
+			if (hp > -99999) {
+				hp -= _colliding_bullet.atk_stat;
+				if (hp > 0)
+					sfx_play(sfxGenericEnemyDamaged);
+		
+				//show_debug_message("Enemy hurt by " + string(other.atk_stat) + " points. HP left: " + string(hp));
+			} else {
+				sfx_play(sfxGenericEnemyBlockBullet);
+			}
+		}
+
+		if (_colliding_bullet.object_index == ParentPlayerWeaponExplosion) {
+			ds_list_add(_colliding_bullet.hurt_enemies, id);
+		}
+
+		with (_colliding_bullet)
+			instance_destroy();
+	}
+} else
 	collide_and_move();
 
 // De-spawn if too far away from the camera

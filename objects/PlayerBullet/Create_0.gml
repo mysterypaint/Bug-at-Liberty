@@ -17,7 +17,7 @@ hsp = 4;
 hsp_carry = 0;
 vsp = 0;
 vsp_carry = 0;
-atk_stat = 0.1; // How much to damage enemies by
+atk_stat = 0.2; // How much to damage enemies by
 
 parent_id = noone;
 
@@ -26,6 +26,7 @@ img_index = 0;
 img_speed = 0;
 
 extra_bullet = false;
+silent_death = false;
 
 bullet_butterfly_life_timer = 9;
 bullet_butterfly_speed = 4;

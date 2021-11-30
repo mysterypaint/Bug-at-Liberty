@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "sprBigSpiderCardinal",
-    "path": "sprites/sprBigSpiderCardinal/sprBigSpiderCardinal.yy",
+    "name": "sprSpiderLargeCardinal",
+    "path": "sprites/sprSpiderLargeCardinal/sprSpiderLargeCardinal.yy",
   },
   "solid": false,
   "visible": false,

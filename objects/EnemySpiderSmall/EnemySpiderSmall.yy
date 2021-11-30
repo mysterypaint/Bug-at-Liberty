@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "sprSmallSpider",
-    "path": "sprites/sprSmallSpider/sprSmallSpider.yy",
+    "name": "sprSpiderSmall",
+    "path": "sprites/sprSpiderSmall/sprSpiderSmall.yy",
   },
   "solid": false,
   "visible": false,

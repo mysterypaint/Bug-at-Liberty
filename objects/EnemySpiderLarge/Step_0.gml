@@ -25,10 +25,10 @@ switch (state) {
 
 			if (img_diagonal_angle)
 				//img_index_offset = 9;
-				spr_index = sprBigSpiderDiagonal;
+				spr_index = sprSpiderLargeDiagonal;
 			else
 				//img_index_offset = 0;
-				spr_index = sprBigSpiderCardinal;
+				spr_index = sprSpiderLargeCardinal;
 
 			hsp = lengthdir_x(move_speed, move_angle);
 			vsp = lengthdir_y(move_speed, move_angle);

@@ -43,4 +43,7 @@ time_alive = 0;
 hsp = 0;
 vsp = 0;
 
+shoot_x_off = 0;
+shoot_y_off = 0;
+
 hp = 4;

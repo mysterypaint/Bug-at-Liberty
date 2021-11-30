@@ -11,6 +11,7 @@ if (a == 1) {
 					dead = false;
 					draw_me = true;
 					init_player = init_player_reset;
+					curr_hp = max_hp;
 				
 					respawn_room_entities();
 					//audio_play_sound(Game.curr_bgm, 0, true);

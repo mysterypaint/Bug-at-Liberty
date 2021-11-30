@@ -2,14 +2,25 @@
 
 if (Game.state == GameStates.PAUSED)
 	exit;
-
+if (keyboard_check_pressed(ord("P")))
+	curr_hp--;
+	
+if (curr_hp <= 0 && max_hp > 0)
+	kill_player();
+else if (inv_frames_timer > 0) {
+	if (Game.dt > 0 && inv_frames_timer % inv_blink_rate == 0)
+		draw_me = !draw_me;
+	inv_frames_timer -= Game.dt;
+} else if (inv_frames_timer <= 0 && max_hp > 0)
+	draw_me = true;
+	
 if (dead) {
 	x += Camera.prev_move_x * Game.dt;
 	y += Camera.prev_move_y * Game.dt;
 	
-	if (death_timer > 0)
-		death_timer--;
-	else if (death_timer == 0) {
+	if (death_timer > 0) {
+		death_timer -= Game.dt;
+	} else if (death_timer == 0) {
 		death_timer = -1;
 		
 		var _vfx = instance_create_depth(0, 0, 0, FadeEffect);
@@ -125,8 +136,8 @@ if (x + hsp <= Camera.x) {
 	x = Camera.x;
 	hsp = 0;
 	_wind_drag = 0;
-} else if (x + hsp >= Camera.x + Game.base_res_width) {
-	x = Camera.x + Game.base_res_width;
+} else if (x + hsp >= Camera.x + Game.base_res_width - right_camera_wall_padding) {
+	x = Camera.x + Game.base_res_width - right_camera_wall_padding;
 	hsp = 0;
 } else
 	x += hsp * Game.dt;

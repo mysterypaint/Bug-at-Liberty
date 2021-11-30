@@ -9,3 +9,5 @@ img_index = 0;
 atk_stat = 0.2;
 
 hurt_enemies = ds_list_create();
+
+sfx_play(sfxPlayerExplosion);

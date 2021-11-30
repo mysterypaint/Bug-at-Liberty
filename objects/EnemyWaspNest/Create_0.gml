@@ -20,9 +20,9 @@ img_diagonal_angle = false;
 ani_max_frames = sprite_get_number(spr_index);
 time_alive = 0;
 
-inv_frames = 0;
+inv_frames_timer = 0;
 blink_rate = 4;
-inv_frames_reset = 25;
+inv_frames_timer_reset = 25;
 
 hsp = 0;
 vsp = 0;

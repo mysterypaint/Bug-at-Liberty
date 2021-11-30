@@ -2,7 +2,16 @@
 global_debug = true;
 debug = false;
 reset_helpers_on_death = true;
+obtain_caged_helpers = true;
 unlock_all_weapons = false;
+game_difficulty = GameDifficulties.REGULAR;
+
+enum GameDifficulties {
+	REGULAR,
+	ARCADE,
+	NIGHTMARE,
+	MAX
+};
 
 enum GameStates {
 	INIT,
@@ -43,7 +52,7 @@ base_res_height = 180;
 zoom_size = 4;
 zoom_size_max = floor(display_get_width() / base_res_width);
 
-player_lives = 1;
+player_lives = 5;
 checkpoint = 0; // x-pos determining where to move the camera and player upon a player death
 
 key_up = vk_up;

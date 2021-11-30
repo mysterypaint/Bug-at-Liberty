@@ -9,7 +9,7 @@ if (time_alive > active_frame) {
 	if (time_alive > active_frame + 15)
 		instance_destroy();
 
-	if (Game.tick % shake_rate == 0) {
+	if (Game.tick % shake_rate == 0 && Game.dt > 0) {
 		img_xoff = irandom(4);
 	}
 	

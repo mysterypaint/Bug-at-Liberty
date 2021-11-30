@@ -13,14 +13,22 @@ function bullet_shooting(){
 		var _ship = Ship;
 		var _ship_bullet_type = _ship.bullet_type;
 		
+		
 		var _bullet = player_shoot_primary_bullet(_ship_bullet_type);
 		var _bullet_sfx = Game.bullet_sfx[_ship_bullet_type];
 		
 		switch(_ship_bullet_type) {
+			/*
+			case BulletTypes.LADYBUG:
+				if (_bullet != noone) {
+					//_bullet.atk_stat = 1.5;
+					show_debug_message(_bullet.atk_stat)
+				}
+				break;*/
 			case BulletTypes.BUTTERFLY:
 				if (_bullet != noone) {
 					_bullet.death_time = _bullet.bullet_butterfly_life_timer;
-					_bullet.atk_stat = 3;
+					_bullet.atk_stat = 1;
 				}
 				
 				for (var _i = 0; _i < 13; _i++) {
@@ -33,7 +41,7 @@ function bullet_shooting(){
 					_bullet2.spr_index = _bullet2.sprite_index;
 					_bullet2.death_time = _bullet2.bullet_butterfly_life_timer;
 					_bullet2.delay_timer = irandom(5);
-					_bullet2.atk_stat = 3;
+					_bullet2.atk_stat = 0.9;
 					
 					// Randomly, pick an angle between quadrant 1 and quadrant 4
 					var _new_angle_range_1 = irandom_range(0, 45); // quadrant 1
@@ -54,7 +62,7 @@ function bullet_shooting(){
 				break;
 			case BulletTypes.DRAGONFLY:
 				if (_bullet != noone) {
-					_bullet.atk_stat = 0.2;
+					_bullet.atk_stat = 0.15;
 					_bullet.hsp = 2; //4 by default
 				}
 				if (bullet_count_two < bullet_count_two_max) {
@@ -74,7 +82,7 @@ function bullet_shooting(){
 				break;
 			case BulletTypes.FIREFLY:
 				if (_bullet != noone) {
-					_bullet.atk_stat = 0.1;
+					_bullet.atk_stat = 0.6;
 					_bullet.gravity_enabled = true;
 				}
 				if (bullet_count_two < bullet_count_two_max) {
@@ -95,7 +103,7 @@ function bullet_shooting(){
 			case BulletTypes.BEE:
 				if (_bullet != noone) {
 					_bullet.hsp = -4;
-					_bullet.atk_stat = 0.6;
+					_bullet.atk_stat = 1.5;
 				}
 				break;
 			/*

@@ -83,14 +83,17 @@ switch (state) {
 			
 			var _bug_type = bug_type;
 			Game.enabled_weapons[_weapon_id] = true;
-			with (_inst_ship) {
-				helpers_activated++;
-				var _this_helper = helpers[helpers_activated];
-				_this_helper.sprite_index = _helper_spr_index;
-				_this_helper.spr_index = _this_helper.sprite_index;
-				_this_helper.activated = true;
-				_this_helper.ani_max_frames = _ani_max_frames;
-				_this_helper.bug_type = _bug_type;
+			
+			if (Game.obtain_caged_helpers) {
+				with (_inst_ship) {
+					helpers_activated++;
+					var _this_helper = helpers[helpers_activated];
+					_this_helper.sprite_index = _helper_spr_index;
+					_this_helper.spr_index = _this_helper.sprite_index;
+					_this_helper.activated = true;
+					_this_helper.ani_max_frames = _ani_max_frames;
+					_this_helper.bug_type = _bug_type;
+				}
 			}
 			//instance_destroy();
 			

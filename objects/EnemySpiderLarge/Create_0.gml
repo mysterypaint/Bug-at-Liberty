@@ -13,7 +13,7 @@ move_speed = 0.2;
 
 ani_max_frames = 8;
 
-hp = 50;
+hp = 10;
 
 move_timer_min = 10;
 move_timer_max = 200;

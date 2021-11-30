@@ -8,8 +8,8 @@
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "ParentPlayerBullet",
-    "path": "objects/ParentPlayerBullet/ParentPlayerBullet.yy",
+    "name": "ParentPlayerWeaponExplosion",
+    "path": "objects/ParentPlayerWeaponExplosion/ParentPlayerWeaponExplosion.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

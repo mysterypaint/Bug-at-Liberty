@@ -7,6 +7,10 @@ shoot_timer_next = irandom(shoot_timer_max_val);
 shoot_timer = shoot_timer_next;
 shoot_x_off = 0;
 shoot_y_off = -6;
+
+
+spr_flying_x_origin = sprite_get_xoffset(sprCockroachFlying);
+spr_flying_y_origin = sprite_get_yoffset(sprCockroachFlying);
 //bullet_shooting_speed[0] = 0.8;
 //bullet_shooting_speed[1] = 1.7;
 

@@ -24,6 +24,7 @@ switch(Game.state) {
 			
 			draw_set_color(c_dkgray);
 			draw_text(0 * _hts, 11 * _hts, "- Press X to view game controls -");
+			draw_text(0 * _hts, 12 * _hts, "Game difficulty: " + print_game_difficulty(Game.game_difficulty) + " (Press C/L to change)");
 			if (keyboard_check_pressed(ord("X")))
 				Game.title_screen_show_controls = true;
 		} else {
@@ -34,6 +35,7 @@ switch(Game.state) {
 			var _controls = "- Controls -\nWASD/Arrow Keys - Move the Ship\nZ/J - Shoot Bullets, Menu Cancel\nX/K, C/L - Cycle through weapons\nX/K - Menu Confirm\nEnter/H - Pause\n\nF7 - Window Size\nF4 (or Alt+Enter) - Toggle Fullscreen\n\n\nPress 'Menu Confirm' or 'Menu Cancel' to return.";
 			draw_set_color(c_dkgray);
 			draw_text(0 * _hts + 1, 0 * _hts + 1, _controls);
+			
 			draw_set_color(c_white);
 			draw_text(0 * _hts, 0 * _hts, _controls);
 		}
@@ -120,6 +122,23 @@ switch(Game.state) {
 		
 		// Draw the game HUD
 		draw_set_alpha(hud_alpha);
+		draw_sprite(sprHUDHealth, 0, x + hp_hud_xoff, y + hp_hud_yoff);
+		var _max_hp = Ship.max_hp;
+		if (_max_hp > 0) {
+			var _hp_left = Ship.curr_hp;
+			for (var _i = 0; _i < _max_hp; _i++) {
+				if (_hp_left > 0)
+					draw_sprite(sprHUDHealth, 2, x + hp_hud_xoff + 6 + hp_hud_width + (_i * hp_hud_width), y + hp_hud_yoff);
+				else
+					draw_sprite(sprHUDHealth, 1, x + hp_hud_xoff + 7 + hp_hud_width + (_i * hp_hud_width), y + hp_hud_yoff);
+				_hp_left--;
+			}
+		} else {
+			hud_sleeping_img_index += hud_sleeping_img_speed;
+			if (hud_sleeping_img_index >= 2)
+				hud_sleeping_img_index = 0;
+			draw_sprite(sprSleeping, hud_sleeping_img_index % 2, x + hp_hud_xoff + 7 + hp_hud_width, y + hp_hud_yoff);
+		}
 		
 		// Weapon boxes & Cursor
 		var _len = Fighters.MAX;
@@ -128,8 +147,11 @@ switch(Game.state) {
 			var _weapon_enabled = Game.enabled_weapons[_i];
 			draw_sprite(sprHUDWeapons, (_i * 2) + _weapon_enabled, x + (_i * weapon_box_width) + weapon_hud_xoff, y + weapon_hud_yoff);
 			
-			if (_i == Ship.bullet_type)
+			if (_i == Ship.bullet_type) {
+				draw_set_alpha(1);
 				draw_sprite(sprHUDWeaponCursor, _i, x + (_i * weapon_box_width) + weapon_hud_xoff + 1, y + weapon_hud_yoff + 1);
+				draw_set_alpha(hud_alpha);
+			}
 		}
 		
 		//draw_text(x + 131, y + 7, "Score: 0");

@@ -31,7 +31,7 @@ lightning_speed = 18;
 active_frame = 50;
 white_screen = false;
 flash_rate = 5;
-flash_alpha = 0.6;
+flash_alpha = 0.35;
 played_sfx = false;
 
 hsp = 0;

@@ -9,6 +9,11 @@ if (!extra_bullet) { // Make sure this bullet didn't spawn simultaneously with a
 	}
 }
 
-if (bullet_type == BulletTypes.FIREFLY) {
-	instance_create_depth(x, y, depth, BulletFireflyExplosion);
+if (!silent_death) {
+	if (bullet_type == BulletTypes.FIREFLY) {
+		instance_create_depth(x, y, depth, BulletFireflyExplosion);
+	}
+	if (bullet_type == BulletTypes.BEE) {
+		instance_create_depth(x, y, depth, BulletWaspMissileExplosion);
+	}
 }
