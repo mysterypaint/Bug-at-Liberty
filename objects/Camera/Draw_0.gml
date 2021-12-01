@@ -14,22 +14,32 @@ switch(Game.state) {
 	case GameStates.TITLE:
 		if (!Game.title_screen_show_controls) {
 			draw_sprite(sprTitleScreen, 0, 0, 0);
-			draw_text(17 * _hts, 1 * _hts, "\n\nBug Shmup");
+			//draw_text(17 * _hts, 1 * _hts, "\n\nBug Shmup");
+			
+			var _sine_y = 2 * sin(2 * pi * Game.tick / 200) - 10;
+			draw_sprite(sprTitle, 0, 0, _sine_y);
+			
 			if (Game.tick % Game.TITLE_BLINK_SPEED == 0)
 				Game.show_titlescreen_prompt = !Game.show_titlescreen_prompt;
 		
 			draw_set_color(c_yellow);
 			if (Game.show_titlescreen_prompt)
-				draw_text(11 * _hts, 7 * _hts, "- Press Pause to begin -");
+				draw_text(11 * _hts, 11 * _hts, "- Press Pause to begin -");
 			
-			draw_set_color(c_dkgray);
-			draw_text(0 * _hts, 11 * _hts, "- Press X to view game controls -");
-			draw_text(0 * _hts, 12 * _hts, "Game difficulty: " + print_game_difficulty(Game.game_difficulty) + " (Press C/L to change)");
+			draw_set_color(c_maroon);
+			var _str_ctrls = "- Press X to view game controls -";
+			var _str_game_diff = "Game difficulty: " + print_game_difficulty(Game.game_difficulty) + " (Press C/L to change)";
+			draw_text(0 * _hts, 20 * _hts, _str_ctrls);
+			draw_text(0 * _hts, 21 * _hts, _str_game_diff);
+			draw_set_color(c_red);
+			draw_text(0 * _hts, 20 * _hts - 1, _str_ctrls);
+			draw_text(0 * _hts, 21 * _hts - 1, _str_game_diff);
 			if (keyboard_check_pressed(ord("X")))
 				Game.title_screen_show_controls = true;
 		} else {
 			if (Game.key_confirm_pressed || Game.key_cancel_pressed)
 				Game.title_screen_show_controls = false;
+
 			draw_set_color(c_black);
 			draw_rectangle(0, 0, Game.base_res_width, Game.base_res_height, false);
 			var _controls = "- Controls -\nWASD/Arrow Keys - Move the Ship\nZ/J - Shoot Bullets, Menu Cancel\nX/K, C/L - Cycle through weapons\nX/K - Menu Confirm\nEnter/H - Pause\n\nF7 - Window Size\nF4 (or Alt+Enter) - Toggle Fullscreen\n\n\nPress 'Menu Confirm' or 'Menu Cancel' to return.";

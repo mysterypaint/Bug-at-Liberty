@@ -22,6 +22,10 @@ if (global_debug) {
 }
 
 if (debug) {
+	
+	if (keyboard_check_pressed(ord("P")))
+		Ship.curr_hp--;
+	
 	if (keyboard_check_pressed(ord("M"))) {
 		mute_bgm = !mute_bgm;
 		

@@ -14,6 +14,7 @@ wait_timer = 0;
 draw_me = false;
 moving_left = false;
 hp = -99999; // Infinite HP
+can_hurt_player = false;
 
 padding = 2;
 
@@ -23,6 +24,9 @@ punching_speed = 10;
 caution_img_index = 0;
 caution_ani_max_frames = 4;
 caution_img_speed = 0.2;
+
+dual_slam = false;
+impact_point_offset = 0;
 
 // Create the arm for this hand
 mask_index = -1;
@@ -41,6 +45,7 @@ arm_width = 320 - hand_width;
 x_offset = hand_width;//-Game.base_res_width - padding;
 body_extension.spr_index = body_extension.sprite_index;
 body_extension.mask_index = body_extension.spr_index;
+body_extension.can_hurt_player = false;
 //body_extension.x = x - arm_width;
 //body_extension.y = y;
 

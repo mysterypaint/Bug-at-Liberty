@@ -19,4 +19,5 @@ function cockroach_update_img_xyscale(_direction) {
 			img_yscale = -1;
 			break;
 	}
+	image_yscale = img_yscale;
 }

@@ -8,7 +8,7 @@ move_speed = 2;
 
 curr_hp = 6;
 max_hp = 6;
-inv_frames_timer_reset = 90;
+inv_frames_timer_reset = 300;
 inv_frames_timer = 0;
 inv_blink_rate = 4;
 

@@ -2,8 +2,6 @@
 
 if (Game.state == GameStates.PAUSED)
 	exit;
-if (keyboard_check_pressed(ord("P")))
-	curr_hp--;
 	
 if (curr_hp <= 0 && max_hp > 0)
 	kill_player();
@@ -92,7 +90,7 @@ with (Camera) {
 var _fan = instance_find(EnemyOverlayFan, 0);
 var _wind_drag = 0;
 if (_fan != noone) {
-	if (_fan.img_speed > 0) {
+	if (_fan.time_alive > _fan.active_frame) {
 		_wind_drag = wind_drag_speed;
 	}
 }

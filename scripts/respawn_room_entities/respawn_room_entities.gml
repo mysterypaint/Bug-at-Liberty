@@ -15,14 +15,27 @@ function respawn_room_entities(){
 		instance_destroy(ParentPlayerBullet);
 	if (instance_exists(PlayerPowerup))
 		instance_destroy(PlayerPowerup);
-	if (instance_exists(EnemyExplosion))
+	if (instance_exists(EnemyExplosion)) {
+		with (other) {
+			silent_death = true;
+			instance_destroy();
+		}
+	}
 		instance_destroy(EnemyExplosion);
 	if (instance_exists(PlayerExplosion))
 		instance_destroy(PlayerExplosion);
-	if (instance_exists(EnemyLightning))
-		instance_destroy(EnemyLightning);
-	if (instance_exists(EnemyOverlayFan))
-		instance_destroy(EnemyOverlayFan);
+	if (instance_exists(EnemyLightning)) {
+		with (other) {
+			silent_death = true;
+			instance_destroy();
+		}
+	}
+	if (instance_exists(EnemyOverlayFan)) {
+		with (other) {
+			silent_death = true;
+			instance_destroy();
+		}
+	}
 
 	// Destroy all the enemies we originally spawned
 	if (ds_exists(_lvl_obj.instances, ds_type_list)) {

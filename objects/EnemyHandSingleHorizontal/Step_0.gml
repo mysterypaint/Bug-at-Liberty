@@ -9,8 +9,6 @@ switch (state) {
 		else {
 			state = EnemyStates.IDLE;
 			draw_me = true;
-			can_hurt_player = true;
-			body_extension.can_hurt_player = true;
 			//mask_index = sprite_index;
 			if (!moving_left) {
 				x = -500;
@@ -19,6 +17,12 @@ switch (state) {
 				x = Camera.x + Game.base_res_width + x_offset;
 				body_extension.x = x + arm_width;
 			}
+			
+			if (dual_slam)
+				impact_point_offset = Game.base_res_width / 2;
+			else
+				impact_point_offset = 0;
+			
 			if (wait_timer > 0)
 				sfx_play(sfxCautionWarning);
 			y = Ship.y;
@@ -34,6 +38,7 @@ switch (state) {
 			wait_timer = -1;
 			state = EnemyStates.ATTACKING;
 			can_hurt_player = true;
+			body_extension.can_hurt_player = true;
 			punching_state = 1;
 		}
 		
@@ -49,7 +54,7 @@ switch (state) {
 	case EnemyStates.ATTACKING:
 		if (!moving_left) {
 			x = Camera.x + x_offset;
-			if (x + sprite_width > Camera.x + Game.base_res_width) {
+			if (x + sprite_width > Camera.x + Game.base_res_width - impact_point_offset) {
 				punching_state = -1;
 				sfx_play(sfxGenericImpactSound);
 			} else if (punching_state == -1 && x_offset <= -Game.base_res_width - padding) {
@@ -64,7 +69,7 @@ switch (state) {
 			}
 		} else {
 			x = Camera.x + Game.base_res_width + x_offset;
-			if (bbox_left - punching_speed*2 <= Camera.x + Camera.move_x) {
+			if (bbox_left - punching_speed*2 <= Camera.x + Camera.move_x + impact_point_offset) {
 				punching_state = -1;
 				sfx_play(sfxGenericImpactSound);
 			} else if (punching_state == -1 && x_offset >= padding + Game.TILE_SIZE) {
