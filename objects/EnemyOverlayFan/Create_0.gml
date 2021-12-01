@@ -39,3 +39,5 @@ fan_y[0] = 125;
 active_frame = 50;
 duration = 999;
 fan_x_off = 0;
+
+played_wind_blow_sfx = false;

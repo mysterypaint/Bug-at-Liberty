@@ -8,6 +8,7 @@ switch (state) {
 			exit; // The player has not reached this enemy yet.
 		else {
 			state = EnemyStates.IDLE;
+			sfx_play(sfxEnemyPrayingMantisCastingSpell);
 			can_hurt_player = true;
 		}
 		break;
@@ -40,6 +41,7 @@ switch (state) {
 	case EnemyStates.ATTACKING:
 		if (spell_duration_timer <= 0) {
 			state = EnemyStates.IDLE;
+			sfx_play(sfxEnemyPrayingMantisCastingSpell);
 			img_index = 0;
 			img_speed = 0.2;
 			

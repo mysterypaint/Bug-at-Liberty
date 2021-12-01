@@ -1,7 +1,7 @@
 {
   "spriteId": {
-    "name": "sprPlayerExplosion",
-    "path": "sprites/sprPlayerExplosion/sprPlayerExplosion.yy",
+    "name": "sprWaspExplosion",
+    "path": "sprites/sprWaspExplosion/sprWaspExplosion.yy",
   },
   "solid": false,
   "visible": false,

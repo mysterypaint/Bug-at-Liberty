@@ -3,7 +3,7 @@ if (dead)
 	exit;
 
 if (Game.debug) {
-	sfx_play(sfxDebugPlayerHit);
+	//sfx_play(sfxDebugPlayerHit);
 	//other.HP--;
 	instance_destroy(other);
 } else {

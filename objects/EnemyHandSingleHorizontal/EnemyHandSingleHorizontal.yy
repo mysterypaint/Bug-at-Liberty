@@ -1,12 +1,15 @@
 {
-  "spriteId": null,
+  "spriteId": {
+    "name": "sprTile",
+    "path": "sprites/sprTile/sprTile.yy",
+  },
   "solid": false,
   "visible": false,
   "spriteMaskId": null,
   "persistent": false,
   "parentObjectId": {
-    "name": "ParentEnemy",
-    "path": "objects/ParentEnemy/ParentEnemy.yy",
+    "name": "EnemyHandParent",
+    "path": "objects/EnemyHandParent/EnemyHandParent.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

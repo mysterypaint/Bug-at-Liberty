@@ -12,10 +12,10 @@
     "path": "audiogroups/AudioGroupSFX",
   },
   "soundFile": "sfxTitleScreenConfirm.wav",
-  "duration": 0.321354,
+  "duration": 0.791,
   "parent": {
-    "name": "New",
-    "path": "folders/Sounds/SFX/New.yy",
+    "name": "SFX",
+    "path": "folders/Sounds/SFX.yy",
   },
   "resourceVersion": "1.0",
   "name": "sfxTitleScreenConfirm",

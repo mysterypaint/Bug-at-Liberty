@@ -53,8 +53,10 @@ switch (state) {
 					break;
 			}
 			
-			sprite_index = sprCapsulePrisonDestroyed;
-			spr_index = sprite_index;
+			var _expl = instance_create_depth(x, y - 15, depth + 1, CapsulePrisonExplosion);
+			_expl.parent_id = id;
+			//sprite_index = sprCapsulePrisonDestroyed;
+			//spr_index = sprite_index;
 			state = EnemyStates.MOVING;
 		}
 		break;

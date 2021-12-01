@@ -5,6 +5,10 @@ var _y = camera_get_view_y(view_camera[0]);
 if (time_alive > active_frame) {
 	img_speed = 0.2;
 	draw_sprite(sprWind, img_index, _x, _y);
+	if (!played_wind_blow_sfx) {
+		sfx_play(sfxPrayingMantisWindAttack, 0, true);
+		played_wind_blow_sfx = true;
+	}
 }
 
 var _lerp_x = lerp(0, 26, fan_x_off / 15);

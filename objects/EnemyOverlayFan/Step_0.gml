@@ -21,8 +21,10 @@ switch (state) {
 	case EnemyStates.DYING:
 		fan_x_off -= Game.dt;
 		
-		if (fan_x_off <= 0)
+		if (fan_x_off <= 0) {
+			audio_stop_sound(sfxPrayingMantisWindAttack);
 			instance_destroy();
+		}
 		break;
 }
 

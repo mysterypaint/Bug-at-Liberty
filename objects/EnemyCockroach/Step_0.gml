@@ -26,7 +26,7 @@ switch (state) {
 				direction = choose(45, 135, 225, 225, 315, 315);
 				target_hsp = lengthdir_x(wander_speed, direction);
 				target_vsp = lengthdir_y(wander_speed, direction);
-				
+				sfx_play(sfxCockroachFlyingAround);
 				cockroach_update_img_xyscale(direction);
 			}
 			can_hurt_player = true;
@@ -42,6 +42,7 @@ switch (state) {
 			direction = choose(45, 135, 225, 225, 315, 315);
 			wander_timer = irandom_range(20, wander_timer_reset);
 			
+			sfx_play(sfxCockroachFlyingAround);
 			cockroach_update_img_xyscale(direction);
 		} else {
 			wander_timer -= Game.dt;
@@ -125,6 +126,7 @@ switch (state) {
 			target_hsp = lengthdir_x(wander_speed, direction);
 			target_vsp = lengthdir_y(wander_speed, direction);
 			
+			sfx_play(sfxCockroachFlyingAround);
 			cockroach_update_img_xyscale(direction);
 		} else {
 			wander_timer -= Game.dt;

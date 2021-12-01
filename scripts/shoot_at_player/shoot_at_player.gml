@@ -11,8 +11,22 @@ function shoot_at_player(_type) {
 	}
 	else if (_type == EnemyBulletTypes.LARGE) { // Large, fast bullet
 		var _new_bullet = instance_create_depth(x + shoot_x_off, y + shoot_y_off, depth, EnemyBulletLarge);
+		
+		if (object_index == EnemyHumanBossFace) {
+			_direction = random_range(130, 210);
+			_new_bullet.spd = random_range(0.3, 2.5);
+		} else {
+			_new_bullet.spd = 1.7;
+		}
+		
 		_new_bullet.direction = _direction;
-		_new_bullet.spd = 1.7;
+		
+	}
+	else if (_type == EnemyBulletTypes.SNEEZE) { // Large, fast bullet
+		var _direction = random_range(130, 210);
+		var _new_bullet = instance_create_depth(x + shoot_x_off, y + shoot_y_off, depth, EnemyBulletSneeze);
+		_new_bullet.direction = _direction;
+		_new_bullet.spd = random_range(0.3, 2.5);
 	}
 }
 

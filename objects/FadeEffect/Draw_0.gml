@@ -16,6 +16,7 @@ if (a == 1) {
 					respawn_room_entities();
 					//audio_play_sound(Game.curr_bgm, 0, true);
 					Camera.checkpoint_display_timer = 0;
+					Camera.scroll_to_boss = false;
 					x = Game.checkpoint + 120;
 					y = 32;
 					
@@ -59,7 +60,8 @@ if (a == 1) {
 					move_x = 0;
 					move_y = 0;
 				}
-				camera_set_view_pos(view_camera[0], Camera.x, Camera.y);
+				with (Camera)
+					camera_set_view_pos(view_camera[0], x + screenshake_xoff, y + screenshake_yoff);
 			}
 			break;
 	}

@@ -1,5 +1,21 @@
 /// @description Insert description here
 switch(state) {
+	case GameStates.VICTORY_SCREEN:
+		if (victory_screen_timer > 0) {
+			Camera.screenshake = 0;
+			Camera.screenshake_xoff = 0;
+			Camera.screenshake_yoff = 0;
+			victory_screen_timer -= Game.dt;
+		} else {
+			state = GameStates.CREDITS;
+		}
+		break;
+	case GameStates.CREDITS:
+		if (game_end_timer > 0)
+			game_end_timer -= Game.dt;
+		else if (key_pause_pressed)
+			game_restart();
+		break;
 	case GameStates.INIT:
 		state = GameStates.TITLE;
 		audio_group_set_gain(AudioGroupSFX, 1, 1); // SFX
@@ -11,19 +27,21 @@ switch(state) {
 		if (key_pause_pressed && !title_screen_show_controls && begin_game_timer == -1) {
 			begin_game_timer = begin_game_timer_reset;
 			TITLE_BLINK_SPEED = 4;
-			sfx_play(sfxExtraLife);
+			sfx_play(sfxTitleScreenConfirm);
 		}
 		
-		if (key_weapon_change_forward_pressed)
-			game_difficulty++
+		if (begin_game_timer <= -1) {
+			if (key_weapon_change_forward_pressed)
+				game_difficulty++
 		
-		if (game_difficulty > GameDifficulties.MAX - 1)
-			game_difficulty = 0;
+			if (game_difficulty > GameDifficulties.MAX - 1)
+				game_difficulty = 0;
+		}
 		
 		if (begin_game_timer > 0) {
 			begin_game_timer -= Game.dt;
 		} else if (begin_game_timer == 0) {
-			playerShip = instance_create_depth(120, 32, 0, Ship);
+			playerShip = instance_create_depth(64 + 32, 32*2, 0, Ship);
 			
 			switch(game_difficulty) {
 				case GameDifficulties.REGULAR:
@@ -48,7 +66,7 @@ switch(state) {
 					break;
 			}
 			//room_goto(rm_lv1);
-			level_data_obj = read_json("testmap0.json");
+			level_data_obj = read_json("level.json");
 			
 			state = GameStates.GAMEPLAY;
 			pause_timer = pause_timer_reset;
@@ -58,11 +76,20 @@ switch(state) {
 			begin_game_timer = -1;
 		}
 		break;
+	case GameStates.FADE_TO_VICTORY_SCREEN:
+		if (Game.tick % 5 == 0) {
+			if (!stop_endgame_explosions) {
+				var _x = Camera.x + irandom_range(0, Game.base_res_width);
+				var _y = Camera.y + irandom_range(0, Game.base_res_height);
+				instance_create_depth(_x, _y, depth, EnemyExplosion);
+				sfx_play(sfxGenericEnemyExplosion);
+			}
+		}
 	case GameStates.GAMEPLAY:
 		if (Game.player_lives <= 0) {
 			TITLE_BLINK_SPEED = 30;
 			state = GameStates.GAMEOVER;
-			bgm_stop(curr_bgm);
+			bgm_stop();
 			audio_stop_all();
 			bgm_play(musGameOverJingle, 0, false, 500, 99999);
 			break;
@@ -73,16 +100,18 @@ switch(state) {
 				dt = 0;
 				prev_state = GameStates.GAMEPLAY;
 				state = GameStates.PAUSED;
+				sfx_play(sfxPause);
 				pause_timer = pause_timer_reset;
 				
 				bgm_pause(curr_bgm);
 			}
 		}
 		
+		/*
 		if (keyboard_check_pressed(ord("T"))) {
 			if (!instance_exists(Textbox))
 				var _tbox = create_textbox(0);
-		}
+		}*/
 		//player_score += (1 * dt);
 		break;
 	case GameStates.PAUSED:
@@ -91,7 +120,7 @@ switch(state) {
 			state = prev_state;
 			prev_state = GameStates.PAUSED;
 			pause_timer = pause_timer_reset;
-			
+			sfx_play(sfxUnPause);
 			bgm_resume(curr_bgm);
 		}
 		break;
@@ -101,7 +130,7 @@ switch(state) {
 			move_y = 0;
 			x = 0;
 			y = 0;
-			camera_set_view_pos(view_camera[0], x, y);
+			camera_set_view_pos(view_camera[0], x + screenshake_xoff, y + screenshake_yoff);
 		}
 		
 		if (key_pause_pressed)

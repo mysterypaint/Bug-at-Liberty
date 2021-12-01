@@ -8,24 +8,29 @@ function level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation,
 	var _obj_id = noone;
 	
 	switch(_name) {
+		case "EnemyBoss1":
+			_obj_id = instance_create_depth(_x, _y, 0, EnemyBoss1);
+			break;
 		case "EnemyHandHorizontal":
 			_obj_id = instance_create_depth(_x, _y, 0, EnemyHandHorizontal);
 			
-			if (!is_undefined(_properties)) {
-				var _num_props = ds_list_size(_properties);
-				for (var _i = 0; _i < _num_props; _i++) {
-					var _this_property = _properties[| _i];
-					var _prop_name = _this_property[? "name"];
-					var _prop_type = _this_property[? "type"];
-					var _prop_value = _this_property[? "value"];
+			with (_obj_id) {
+				if (!is_undefined(_properties)) {
+					var _num_props = ds_list_size(_properties);
+					for (var _i = 0; _i < _num_props; _i++) {
+						var _this_property = _properties[| _i];
+						var _prop_name = _this_property[? "name"];
+						var _prop_type = _this_property[? "type"];
+						var _prop_value = _this_property[? "value"];
 					
-					switch(_prop_name) {
-						case "wait_timer":
-							wait_timer = _prop_value;
-							break;
-						case "is_foot":
-							is_foot = _prop_value;
-							break;
+						switch(_prop_name) {
+							case "wait_timer":
+								wait_timer = _prop_value;
+								break;
+							case "is_foot":
+								is_foot = _prop_value;
+								break;
+						}
 					}
 				}
 			}
@@ -33,21 +38,23 @@ function level_data_spawn_entity(_id, _name, _x, _y, _type, _visible, _rotation,
 		case "EnemyHandVertical":
 			_obj_id = instance_create_depth(_x, _y, 0, EnemyHandVertical);
 			
-			if (!is_undefined(_properties)) {
-				var _num_props = ds_list_size(_properties);
-				for (var _i = 0; _i < _num_props; _i++) {
-					var _this_property = _properties[| _i];
-					var _prop_name = _this_property[? "name"];
-					var _prop_type = _this_property[? "type"];
-					var _prop_value = _this_property[? "value"];
+			with (_obj_id) {
+				if (!is_undefined(_properties)) {
+					var _num_props = ds_list_size(_properties);
+					for (var _i = 0; _i < _num_props; _i++) {
+						var _this_property = _properties[| _i];
+						var _prop_name = _this_property[? "name"];
+						var _prop_type = _this_property[? "type"];
+						var _prop_value = _this_property[? "value"];
 					
-					switch(_prop_name) {
-						case "wait_timer":
-							wait_timer = _prop_value;
-							break;
-						case "is_foot":
-							is_foot = _prop_value;
-							break;
+						switch(_prop_name) {
+							case "wait_timer":
+								wait_timer = _prop_value;
+								break;
+							case "is_foot":
+								is_foot = _prop_value;
+								break;
+						}
 					}
 				}
 			}

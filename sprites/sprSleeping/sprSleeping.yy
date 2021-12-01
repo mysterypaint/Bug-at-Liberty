@@ -17,8 +17,8 @@
   "width": 50,
   "height": 16,
   "textureGroupId": {
-    "name": "Default",
-    "path": "texturegroups/Default",
+    "name": "HudTextboxStuff",
+    "path": "texturegroups/HudTextboxStuff",
   },
   "swatchColours": null,
   "gridX": 0,

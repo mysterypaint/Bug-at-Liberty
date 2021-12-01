@@ -1,6 +1,6 @@
 /// @description Insert description here
 
-if (Game.state == GameStates.PAUSED)
+if (Game.state == GameStates.PAUSED || Game.state == GameStates.CREDITS || Game.state == GameStates.VICTORY_SCREEN || Game.state == GameStates.GAMEOVER)
 	exit;
 	
 if (curr_hp <= 0 && max_hp > 0)
@@ -12,6 +12,19 @@ else if (inv_frames_timer > 0) {
 } else if (inv_frames_timer <= 0 && max_hp > 0)
 	draw_me = true;
 	
+with (Camera) {
+	if (scroll_to_boss) {
+		if (x + Game.base_res_width < EnemyHumanBossFace.x + EnemyHumanBossFace.sprite_width) {
+			move_x = 0.2;
+			move_y = 0;
+		} else {
+			x = EnemyHumanBossFace.x + EnemyHumanBossFace.sprite_width - Game.base_res_width;
+			move_x = 0;
+			move_y = 0;
+		}
+	}
+}
+
 if (dead) {
 	x += Camera.prev_move_x * Game.dt;
 	y += Camera.prev_move_y * Game.dt;
@@ -30,7 +43,7 @@ if (dead) {
 		with (Camera) {
 			x += (move_x * Game.dt);
 			y += (move_y * Game.dt);
-			camera_set_view_pos(view_camera[0], x, y);
+			camera_set_view_pos(view_camera[0], x + screenshake_xoff, y + screenshake_yoff);
 		
 			var _mx = move_x;
 			var _my = move_y;
@@ -259,6 +272,6 @@ if (!dead) {
 	with (Camera) {
 		x += (move_x * Game.dt);
 		y += (move_y * Game.dt);
-		camera_set_view_pos(view_camera[0], x, y);
+		camera_set_view_pos(view_camera[0], x + screenshake_xoff, y + screenshake_yoff);
 	}
 }

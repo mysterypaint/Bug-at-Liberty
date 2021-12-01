@@ -11,6 +11,56 @@ var _ts = Game.TILE_SIZE;
 var _hts = _ts / 2;
 
 switch(Game.state) {
+	case GameStates.VICTORY_SCREEN:
+		draw_sprite(sprCreditsScreen, 0, 0, 0);
+		if (Game.victory_screen_timer > 40) {
+			if (!played_sfx_1) {
+				sfx_play(sfxEnemyGrasshopperJump);
+				played_sfx_1 = true;
+			}
+			draw_sprite(sprVictoryText, 0, 0, 0);
+		}
+		break;
+	case GameStates.CREDITS:
+		draw_sprite(sprCreditsScreen, 0, 0, 0);
+		if (Game.game_end_timer <= 140) {
+			if (!played_sfx_2) {
+				sfx_play(sfxEnemyGrasshopperJump);
+				played_sfx_2 = true;
+			}
+			draw_sprite(sprCreditsText, 0, 0, 0);
+		}
+		if (Game.tick % 180 == 0)
+			Game.show_titlescreen_prompt = !Game.show_titlescreen_prompt;
+
+		if (Game.show_titlescreen_prompt) {
+			
+			if (Game.game_end_timer <= 0) {
+				/*
+				var _color = str_to_hex("DDECFB");
+				draw_set_color(_color);
+				var _str = "Press Pause to return to the Title Screen";
+				draw_text(6 * _hts + 1, 20 * _hts + 1, _str);
+				_color = str_to_hex("5E00FF");
+				draw_set_color(_color);
+				draw_text(6 * _hts, 20 * _hts, _str);*/
+				draw_sprite(sprPressPausePrompt, 0, 0, 0);
+				
+				if (!played_sfx_3) {
+					sfx_play(sfxCheckpointReached);
+					played_sfx_3 = true;
+				}
+			}
+		}
+		/*
+		fadeout_alpha += clamp(fadeout_speed * Game.dt, 0, 1);
+		draw_set_alpha(fadeout_alpha);
+		var _col = c_black;
+		draw_rectangle_color(x - 16, y -16, x + Game.base_res_width + 16, y + Game.base_res_height + 16,
+		_col,_col,_col,_col,false);
+		draw_set_alpha(1);
+		*/
+		break;
 	case GameStates.TITLE:
 		if (!Game.title_screen_show_controls) {
 			draw_sprite(sprTitleScreen, 0, 0, 0);
@@ -34,7 +84,7 @@ switch(Game.state) {
 			draw_set_color(c_red);
 			draw_text(0 * _hts, 20 * _hts - 1, _str_ctrls);
 			draw_text(0 * _hts, 21 * _hts - 1, _str_game_diff);
-			if (keyboard_check_pressed(ord("X")))
+			if (keyboard_check_pressed(ord("X")) && (begin_game_timer <= -1))
 				Game.title_screen_show_controls = true;
 		} else {
 			if (Game.key_confirm_pressed || Game.key_cancel_pressed)
@@ -71,6 +121,7 @@ switch(Game.state) {
 			}
 		}
 		break;
+	case GameStates.FADE_TO_VICTORY_SCREEN:
 	case GameStates.PAUSED:
 	case GameStates.GAMEPLAY:
 		var i = 0;
@@ -224,6 +275,19 @@ switch(Game.state) {
 	
 }
 
+if (Game.state == GameStates.FADE_TO_VICTORY_SCREEN) {
+	fadeout_alpha += clamp(fadeout_speed * Game.dt, 0, 1);
+	draw_set_alpha(fadeout_alpha);
+	var _col = c_black;
+	draw_rectangle_color(x - 16, y -16, x + Game.base_res_width + 16, y + Game.base_res_height + 16,
+	_col,_col,_col,_col,false);
+	draw_set_alpha(1);
+	
+	if (fadeout_alpha >= 1) {
+		fadeout_alpha = 1;
+		fadeout_speed = fadeout_speed * -1;
+	}
+}
 
 if (Game.debug) {
 	draw_set_color(c_white);

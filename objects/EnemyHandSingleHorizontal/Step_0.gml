@@ -38,6 +38,7 @@ switch (state) {
 			wait_timer = -1;
 			state = EnemyStates.ATTACKING;
 			can_hurt_player = true;
+			mask_index = spr_index;
 			body_extension.can_hurt_player = true;
 			punching_state = 1;
 		}

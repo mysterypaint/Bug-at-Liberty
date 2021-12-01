@@ -41,6 +41,7 @@ switch (state) {
 			wait_timer = -1;
 			state = EnemyStates.ATTACKING;
 			can_hurt_player = true;
+			mask_index = spr_index;
 			punching_state = 1;
 		}
 		
@@ -73,7 +74,7 @@ switch (state) {
 		} else {
 			y = Camera.y + Game.base_res_height + arm_height + y_offset;
 			if (y + y_offset - punching_speed <= Camera.y + Camera.move_y + impact_point_offset) {
-				y_offset = -arm_height;
+				y_offset = -Game.base_res_height + impact_point_offset;
 				//y = Camera.y + Camera.move_y - y_offset;
 				punching_state = -1;
 				sfx_play(sfxGenericImpactSound);

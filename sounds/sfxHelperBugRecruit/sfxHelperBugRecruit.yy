@@ -14,8 +14,8 @@
   "soundFile": "sfxHelperBugRecruit.wav",
   "duration": 1.59375,
   "parent": {
-    "name": "New",
-    "path": "folders/Sounds/SFX/New.yy",
+    "name": "SFX",
+    "path": "folders/Sounds/SFX.yy",
   },
   "resourceVersion": "1.0",
   "name": "sfxHelperBugRecruit",

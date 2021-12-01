@@ -1,10 +1,13 @@
 /// @description
-global_debug = true;
+global_debug = false;
 debug = false;
 reset_helpers_on_death = true;
 obtain_caged_helpers = true;
 unlock_all_weapons = false;
 game_difficulty = GameDifficulties.REGULAR;
+game_end_timer = 300;
+victory_screen_timer = 60 * 5;
+stop_endgame_explosions = false;
 
 enum GameDifficulties {
 	REGULAR,
@@ -19,6 +22,8 @@ enum GameStates {
 	GAMEPLAY,
 	PAUSED,
 	GAMEOVER,
+	FADE_TO_VICTORY_SCREEN,
+	VICTORY_SCREEN,
 	CREDITS
 };
 

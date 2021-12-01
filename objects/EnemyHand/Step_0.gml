@@ -27,10 +27,10 @@ switch (state) {
 		
 		
 		hsp = hsp * (1 - Game.dt * accel_rate) + target_hsp * (Game.dt * accel_rate);
-		x += hsp;
+		x += hsp * Game.dt;
 		
 		vsp = vsp * (1 - Game.dt * accel_rate) + target_vsp * (Game.dt * accel_rate);
-		y += vsp;
+		y += vsp * Game.dt;
 		
 		if (wait_timer < wait_timer_max) {
 		
@@ -43,6 +43,7 @@ switch (state) {
 			img_yscale = 1;
 			img_index = 1;
 			can_hurt_player = true;
+			mask_index = spr_index;
 			Camera.screenshake = 20;
 		}
 		break;

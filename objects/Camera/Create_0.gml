@@ -1,6 +1,14 @@
 /// @description Insert description here
 // You can write your code in this editor
 ds_draw_object_depth_sort = ds_grid_create(2, 1);
+scroll_to_boss = false;
+
+
+fadeout_speed = 0;
+fadeout_alpha = 0;
+screenshake = 0;
+screenshake_xoff = 0;
+screenshake_yoff = 0;
 
 hp_hud_xoff = 11;
 hp_hud_yoff = 2;
@@ -35,3 +43,8 @@ prev_move_y = 0;
 hide_camera = false;
 
 shadow_layer_alpha = 0.3922;
+
+// Credits screen sfx flags
+played_sfx_1 = false;
+played_sfx_2 = false;
+played_sfx_3 = false;

@@ -16,7 +16,7 @@ function respawn_room_entities(){
 	if (instance_exists(PlayerPowerup))
 		instance_destroy(PlayerPowerup);
 	if (instance_exists(EnemyExplosion)) {
-		with (other) {
+		with (EnemyExplosion) {
 			silent_death = true;
 			instance_destroy();
 		}
@@ -25,13 +25,13 @@ function respawn_room_entities(){
 	if (instance_exists(PlayerExplosion))
 		instance_destroy(PlayerExplosion);
 	if (instance_exists(EnemyLightning)) {
-		with (other) {
+		with (EnemyLightning) {
 			silent_death = true;
 			instance_destroy();
 		}
 	}
 	if (instance_exists(EnemyOverlayFan)) {
-		with (other) {
+		with (EnemyOverlayFan) {
 			silent_death = true;
 			instance_destroy();
 		}
@@ -55,7 +55,7 @@ function respawn_room_entities(){
 
 	// Destroy any remaining enemies in the room
 	if (instance_exists(ParentEnemy)) {
-		with (other) {
+		with (ParentEnemy) {
 			silent_death = true;
 			instance_destroy();
 		}

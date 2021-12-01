@@ -38,3 +38,5 @@ hsp = 0;
 vsp = 0;
 
 hp = -99999;
+
+sfx_play(sfxEnemyPrayingMantisLightningStrike);

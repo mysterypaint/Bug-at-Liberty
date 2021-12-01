@@ -16,7 +16,7 @@ hsp = 0;
 vsp = 0;
 target_hsp = 0;
 target_vsp = 0;
-accel_rate = 0.9;
+accel_rate = 0.7;
 
 wait_timer = 0;
 wait_timer_max = 150;

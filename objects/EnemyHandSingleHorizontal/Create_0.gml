@@ -1,6 +1,7 @@
 /// @description Insert description here
 // Inherit the parent event
 event_inherited();
+draw_me = false;
 
 cam_bounds_x_min = Game.TILE_SIZE * 50;
 cam_bounds_y_min = Game.TILE_SIZE * 50;

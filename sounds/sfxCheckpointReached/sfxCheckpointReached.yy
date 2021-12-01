@@ -14,8 +14,8 @@
   "soundFile": "sfxCheckpointReached.wav",
   "duration": 3.375,
   "parent": {
-    "name": "New",
-    "path": "folders/Sounds/SFX/New.yy",
+    "name": "SFX",
+    "path": "folders/Sounds/SFX.yy",
   },
   "resourceVersion": "1.0",
   "name": "sfxCheckpointReached",

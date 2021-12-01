@@ -16,6 +16,7 @@ switch (state) {
 			img_index_offset = 1;
 			state = EnemyStates.JUMPING;
 			vsp = -jump_speed;
+			sfx_play(sfxEnemyGrasshopperJump);
 			jump_timer = jump_timer_reset;
 		} else {
 			jump_timer -= Game.dt;

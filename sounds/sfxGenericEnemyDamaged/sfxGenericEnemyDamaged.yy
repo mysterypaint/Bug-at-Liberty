@@ -14,8 +14,8 @@
   "soundFile": "sfxGenericEnemyDamaged.wav",
   "duration": 0.31225,
   "parent": {
-    "name": "New",
-    "path": "folders/Sounds/SFX/New.yy",
+    "name": "Enemies",
+    "path": "folders/Sounds/SFX/Enemies.yy",
   },
   "resourceVersion": "1.0",
   "name": "sfxGenericEnemyDamaged",

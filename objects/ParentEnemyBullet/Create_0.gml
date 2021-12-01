@@ -11,5 +11,6 @@ ani_max_frames = sprite_get_number(sprite_index);
 enum EnemyBulletTypes {
 	SMALL,
 	LARGE,
+	SNEEZE,
 	MAX
 };
